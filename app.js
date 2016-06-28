@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var methodOverride = require('method-override');
+require('dotenv').load();
 
 var STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
 var STRAVA_CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
@@ -23,21 +25,16 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new StravaStrategy({
     clientID: STRAVA_CLIENT_ID,
     clientSecret: STRAVA_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/strava/callback"
+    callbackURL: process.env.Host + "/auth/strava/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
 
-      // To keep the example simple, the user's Strava profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Strava account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }
-));
-
+        return done(null, profile);
+      });
+    }
+  ));
 var app = express();
 
 // view engine setup
@@ -49,10 +46,52 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
+// app.use(session({
+//   name: 'bikeRider',
+//   keys: [process.env.SESSION_KEY]
+// }));
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/', function(req, res){
+  res.render('index', { user: req.user });
+});
+
+app.get('/account', ensureAuthenticated, function(req, res){
+  res.render('account', { user: req.user });
+});
+
+app.get('/login', function(req, res){
+  res.render('login', { user: req.user });
+});
+
+app.get('/auth/strava',
+  passport.authenticate('strava', { scope: ['public'] }));
+
+app.get('/auth/strava/callback',
+  passport.authenticate('strava', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -85,59 +124,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.get('/', function(req, res){
-  res.render('index', { user: req.user });
-});
+curl -G https://www.strava.com/api/v3/gear/b30856 \-H "Authorization: Bearer 83ebeabdec09f6670863766f792ead24d61fe3f9"
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
-
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
-});
-
-// GET /auth/strava
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in Strava authentication will involve
-//   redirecting the user to strava.com.  After authorization, Strava
-//   will redirect the user back to this application at /auth/strava/callback
-app.get('/auth/strava',
-  passport.authenticate('strava', { scope: ['public'] }),
-  function(req, res){
-    // The request will be redirected to Strava for authentication, so this
-    // function will not be called.
-  });
-
-// GET /auth/strava/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
-app.get('/auth/strava/callback',
-  passport.authenticate('strava', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
 
 module.exports = app;
-
-
-client secret: 94dcc786df28d1f94851164264ba1bf43956f5e4
-
-access token: d2502b6017d0f7b5427d74917822a532f5f9a43e

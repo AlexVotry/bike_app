@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <ul class="nav navbar-nav">
+    <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
+      <li><a ui-sref="login">login</a></li>
+      <li><a ui-sref="bikeList">Bikes</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <h3>List of bikes: </h3>
+  <ul>
+    <li><a ui-sref=".Tarmac">Specialized Tarmac</a><br></li>
+    <li><a ui-sref=".Tarmac">Giant Defy</a></li>
+    <li><a ui-sref=".Tarmac">Kestrel IronMan TT</a></li>
+    <li><a ui-sref=".Tarmac">Redline Pro CX</a></li>
+    <li><a ui-sref=".Tarmac">Track bike</a></li>
+  </ul>
+  <div ui-view></div>
+</div>
