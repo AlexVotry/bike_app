@@ -5,7 +5,7 @@
     .module('bikes')
     .controller('PartsController', PartsController);
 
-  function PartsController($location) {
+  function PartsController(Stats, $location) {
     let vm = this;
     vm.list = [
         'chain',
@@ -14,23 +14,19 @@
         'pullies',
         'cable'
         ];
-      }
-  //   vm.qtyTotal = 0;
-  //   vm.costs = ['higher', 'lower'];
-  //   vm.qtys = getParts.qty;
-  //   vm.addQty = function (amt, indx) {
-  //     let teaInfo = getParts.addTea(vm.qtyTotal, amt, indx);
-  //     vm.qtyTotal = teaInfo.total;
-  //   }
-  //   getParts.teaBags().then(tdata => {
-  //     vm.teas = tdata;
-  //   });
-  //   getParts.teaCat().then(cdata => {
-  //     vm.cats = cdata;
-  //   });
-  //   vm.advance= function() {
-  //     $location.path(`/checkout`);
-  //   };
-  // };
-
+    console.log(Stats.user());
+    Stats.user().then(members => {
+      vm.user = members;
+    });
+    vm.reg = function(newUser) {
+      userInfo.regUser(newUser);
+      vm.user.push(newUser);
+    };
+    vm.auth = function(user) {
+      userInfo.authUser(user);
+    };
+    vm.editMember = function(user) {
+      userInfo.editMember(user)
+    };
+  };
 })();

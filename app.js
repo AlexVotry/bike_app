@@ -38,8 +38,8 @@ passport.use(new StravaStrategy({
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'public', 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'public', 'views'));
+// app.set('view engine', 'jade');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -60,38 +60,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
-app.use('/users', users);
 
-app.get('/', function(req, res){
-  res.render('index', { user: req.user });
-});
+// app.get('/', function(req, res){
+//   res.render('index', { user: req.user });
+// });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
-
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
+app.get('/users', ensureAuthenticated, function(req, res){
+  res.render('users', { user: req.user });
 });
 
 app.get('/auth/strava',
   passport.authenticate('strava', { scope: ['public'] }));
 
 app.get('/auth/strava/callback',
-  passport.authenticate('strava', { failureRedirect: '/login' }),
+  passport.authenticate('strava', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/users');
   });
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+app.use('/users', users);
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -107,7 +104,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -118,13 +115,10 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
     error: {}
   });
 });
-
-curl -G https://www.strava.com/api/v3/gear/b30856 \-H "Authorization: Bearer 83ebeabdec09f6670863766f792ead24d61fe3f9"
-
 
 module.exports = app;

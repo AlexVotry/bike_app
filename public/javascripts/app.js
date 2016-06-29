@@ -17,6 +17,8 @@
       .state('bikeList', {
         url: '/bikeList',
         templateUrl: 'views/bikeList.html',
+        controllerAs: 'bike',
+        controller: 'PartsController',
         authenticate: true
       })
       .state('bikeList.Tarmac', {
@@ -25,13 +27,13 @@
         controllerAs: 'bike',
         controller: 'PartsController'
         })
-        .state('bikeList.lol', {
-          url: '/LordoftheRings',
-          templateUrl: 'views/list.html',
-          controller: function($scope) {
-            $scope.list = ["Frodo Baggins", "Peregrin Took", "Sauron", "Gollum", "Aragorn"];
-          }
-        })
+        // .state('bikeList.lol', {
+        //   url: '/LordoftheRings',
+        //   templateUrl: 'views/list.html',
+        //   controller: function($scope) {
+        //     $scope.list = ["Frodo Baggins", "Peregrin Took", "Sauron", "Gollum", "Aragorn"];
+        //   }
+        // })
     };
 
   })();

@@ -1,0 +1,82 @@
+{
+  "id": 120316,
+  "username": "avotry",
+  "resource_state": 3,
+  "firstname": "Alex",
+  "lastname": "Votry",
+  "city": "Edmonds",
+  "state": "WA",
+  "country": "United States",
+  "sex": "M",
+  "premium": false,
+  "created_at": "2011-08-03T21:39:34Z",
+  "updated_at": "2016-06-27T18:58:58Z",
+  "badge_type_id": 0,
+  "profile_medium": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/120316/14521/3/medium.jpg",
+  "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/120316/14521/3/large.jpg",
+  "friend": null,
+  "follower": null,
+  "follower_count": 53,
+  "friend_count": 12,
+  "mutual_friend_count": 0,
+  "athlete_type": 0,
+  "date_preference": "%m/%d/%Y",
+  "measurement_preference": "feet",
+  "clubs": [
+    {
+      "id": 16209,
+      "resource_state": 2,
+      "name": "Therapeutic Associates Racing",
+      "profile_medium": "https://dgalywyr863hv.cloudfront.net/pictures/clubs/16209/322409/1/medium.jpg",
+      "profile": "https://dgalywyr863hv.cloudfront.net/pictures/clubs/16209/322409/1/large.jpg",
+      "cover_photo": null,
+      "cover_photo_small": null,
+      "sport_type": "cycling",
+      "private": false,
+      "member_count": 27,
+      "featured": false,
+      "url": "therapeutic-associates-pdx-cycling"
+    }
+  ],
+  "email": "alexvotry@comcast.net",
+  "ftp": null,
+  "weight": 81.6466,
+  "bikes": [
+    {
+      "id": "b30856",
+      "primary": false,
+      "name": "Gold",
+      "resource_state": 2,
+      "distance": 11766045
+    },
+    {
+      "id": "b29419",
+      "primary": false,
+      "name": "Kestrel",
+      "resource_state": 2,
+      "distance": 3273579
+    },
+    {
+      "id": "b443750",
+      "primary": false,
+      "name": "rain bike",
+      "resource_state": 2,
+      "distance": 15354303
+    },
+    {
+      "id": "b29417",
+      "primary": false,
+      "name": "Redline",
+      "resource_state": 2,
+      "distance": 2941107
+    },
+    {
+      "id": "b757770",
+      "primary": false,
+      "name": "Track bike",
+      "resource_state": 2,
+      "distance": 1437781
+    }
+  ],
+  "shoes": []
+}
