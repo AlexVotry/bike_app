@@ -1,0 +1,33 @@
+const knex = require('./knex');
+
+module.exports = {
+  bikes: function bikes() {
+    return knex('bikes');
+  },
+  athletes: function athletes() {
+    return knex('athletes');
+  },
+  frameAndFork: function frameAndFork() {
+    return knex('frameAndFork');
+  },
+  components: function components() {
+    return knex('components');
+  },
+  wheels: function wheels() {
+    return knex('wheels');
+  },
+  //
+  // ab: function authors_books() {
+  //   return knex('authors_books');
+  // },
+  //
+  // both: function both() {
+  //   return knex('books').join('authors_books', {'authors_books.books_id': 'books.bid'})
+  //   .join('authors', {'authors.aid': 'authors_books.authors_id'});
+  // },
+  ensureAuthenticated: function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
+};

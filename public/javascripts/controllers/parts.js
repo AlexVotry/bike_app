@@ -14,19 +14,20 @@
         'pullies',
         'cable'
         ];
-    console.log(Stats.user());
-    Stats.user().then(members => {
-      vm.user = members;
+    Stats.user().then(stravaData => {
+      vm.user = stravaData;
     });
-    vm.reg = function(newUser) {
-      userInfo.regUser(newUser);
-      vm.user.push(newUser);
-    };
-    vm.auth = function(user) {
-      userInfo.authUser(user);
-    };
-    vm.editMember = function(user) {
-      userInfo.editMember(user)
+    Stats.showData();
+
+    vm.partsInfo = function() {
+      let bikeReg = Stats.partsData();
+    }
+    // vm.bicyles = bicyles;
+    // console.log('Stats ', Stats.user(vm.user));
+
+    // Stats.seedBikes().
+    vm.editBike = function(user) {
+      bikeInfo.editBike(user)
     };
   };
 })();
