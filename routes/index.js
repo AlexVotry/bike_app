@@ -14,7 +14,7 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.get('/', models.ensureAuthenticated, function(req, res){
+router.get('/', models.ensureAuthenticated,(req, res) => {
   console.log('index auth');
   res.render('login', { user: req.user });
 });

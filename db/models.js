@@ -16,15 +16,19 @@ module.exports = {
   wheels: function wheels() {
     return knex('wheels');
   },
-  //
-  // ab: function authors_books() {
-  //   return knex('authors_books');
-  // },
-  //
-  // both: function both() {
-  //   return knex('books').join('authors_books', {'authors_books.books_id': 'books.bid'})
-  //   .join('authors', {'authors.aid': 'authors_books.authors_id'});
-  // },
+  dudeAndBike: function dudeAndBike() {
+    return knex('athletes')
+    .join('bikes', {'bikes.ID': 'athletes.ID'});
+  },
+  newId: function newId(table, id) {
+    knex(table).where({ ID: id })
+    .first()
+    .then((exists) => {
+      if (!exists) {
+        return true;
+      }
+    });
+  },
   ensureAuthenticated: function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');

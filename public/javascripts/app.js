@@ -27,10 +27,16 @@
         controllerAs: 'bike',
         controller: 'PartsController'
         })
-        .state('logout', {
-          url: '/logout',
-          templateUrl: 'views/logout.html',
-        })
+      .state('bikeList.bikeForm', {
+        url: "/bikeForm",
+        templateUrl: 'views/bicycle.html',
+        controllerAs: 'bike',
+        controller: 'PartsController'
+      })
+      .state('logout', {
+        url: '/logout',
+        templateUrl: 'views/logout.html',
+      })
         // .state('bikeList.lol', {
         //   url: '/LordoftheRings',
         //   templateUrl: 'views/list.html',

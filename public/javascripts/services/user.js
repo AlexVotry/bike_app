@@ -8,21 +8,40 @@
   function Stats($http) {
     let chosen = [];
     let stravaData = {};
+    let url = "/users";
     return {
       user: function() {
-        return $http.get("/users")
+        return $http.get(url)
         .then((result) => {
-          stravaData = result.data;
-          return stravaData;
+          var stravaData = result.data;
+          var both = {};
+          both.user = `${stravaData[0].firstname} ${stravaData[0].lastname}`;
+          both.pic = stravaData[0].picture;
+          both.bicycles = [];
+          for (var i = 0; i < stravaData.length; i++) {
+            both.bicycles.push({
+              bID : stravaData[i].bID,
+              name : stravaData[i].name,
+              manu : stravaData[i].manu,
+              year : stravaData[i].year,
+              model: stravaData[i].model,
+              distance : stravaData[i].distance
+            });
+          };
+          return both;
         });
       },
 
-      showData: function() {
-        console.log(stravaData);
+      editBikes: function(bicycle) {
+        $http.put(`${url}`, bicycle);
       },
 
+      // showData: function() {
+      //   console.log(stravaData);
+      // },
+
       partsData: function() {
-        return $http.get("/users/bikereg")
+        return $http.get(`${url}/bikereg`)
         .then((result) => {
           return result.data;
         })

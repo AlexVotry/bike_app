@@ -12,6 +12,7 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const methodOverride = require('method-override');
 const session = require('cookie-session');
+const models = require('./db/models');
 require('dotenv').load();
 
 const STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
@@ -30,21 +31,36 @@ passport.use(new StravaStrategy({
     callbackURL: process.env.Host + "/auth/strava/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    return knex('athletes').where({ ID: profile.id }).first().then((athlete) => {
-      if (!athlete) {
-        knex('athletes').insert({
-        ID: profile.id,
-        firstname: profile.name.givenName,
-        lastname: profile.name.familyName,
-        picture: profile.photos[0].value,
-        accessToken: profile.token
+    const newID = profile.id;
+    for (let i = 0; i < profile._json.bikes.length; i++) {
+      if(models.newId('bikes', newID)) {
+        models.bikes().insert({
+          bID: profile._json.bikes[i].id,
+          ID: profile.id,
+          name: profile._json.bikes[i].name,
+          distance: profile._json.bikes[i].distance
+        }).then();
+      } else {
+        models.bikes().where({bID: profile._json.bikes[i].id}).update({
+          distance: profile._json.bikes[i].distance
+        }).then();
+      }
+      console.log(profile._json.bikes[i].distance);
+
+    };
+    if (models.newId('athletes', newID)) {
+      models.athletes().insert({
+      ID: profile.id,
+      firstname: profile.name.givenName,
+      lastname: profile.name.familyName,
+      picture: profile.photos[0].value,
+      accessToken: profile.token
       }, '*').then(newUser => {
         return done(null, newUser);
       });
     } else {
-      return done(null, profile);
-    }
-  });
+    return done(null, profile);
+  };
 }));
 const app = express();
 

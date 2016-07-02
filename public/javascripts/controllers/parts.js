@@ -14,20 +14,13 @@
         'pullies',
         'cable'
         ];
+    vm.editBike = function(bicyle) {
+      console.log(bicyle, 'blah')
+      Stats.editBike(bicyle)
+    }
     Stats.user().then(stravaData => {
       vm.user = stravaData;
     });
-    Stats.showData();
-
-    vm.partsInfo = function() {
-      let bikeReg = Stats.partsData();
-    }
-    // vm.bicyles = bicyles;
-    // console.log('Stats ', Stats.user(vm.user));
-
-    // Stats.seedBikes().
-    vm.editBike = function(user) {
-      bikeInfo.editBike(user)
-    };
+    // console.log($index);
   };
 })();

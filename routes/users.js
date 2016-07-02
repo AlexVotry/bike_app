@@ -6,65 +6,54 @@ const strava = require('strava-v3');
 require('dotenv').load();
 const token = process.env.access_token;
 const api = 'http://www.strava.com';
+const knex = require('../db/knex');
 const models = require('../db/models');
 /* GET home page. */
 
 // console.log('req.user', user);
-router.get('/', function(req, res, next) {
-  fetch( api + '/api/v3/athlete?access_token=' + token)
-  .then(function (response) {
-    return response.json().then( )
-  }).then(function(json) {
-    for (var i = 0; i < json.bikes.length; i++) {
-      models.bikes().insert({
-        bID: json.bikes[i].id,
-        ID: json.id,
-        name: json.bikes[i].name,
-        distance: json.bikes[i].distance
-      });
-      console.log(json.bikes[i].name);
-    };
-    res.json(json);
+router.get('/', (req, res, next) => {
+  models.dudeAndBike().select()
+  .then(stravaData => {
+    res.json(stravaData);
   }).catch(function (error) {
     console.log(error);
   })
 });
 
-router.get('/bikereg', function(req, res, next) {
-  fetch( 'http://www.bikepedia.com/QuickBike/BikeSpecs.aspx?year=2010&brand=Specialized&model=S-Works+Tarmac+SL3+Dura+Ace')
-  .then(function (response) {
-    return response.text()
-  }).then(function(html) {
-    $ = cheerio.load(html);
-    var tables = $('table.DetailsView');
-    var parts = {};
-
-    for (var j = 1; j < tables.length; j++) {
-      var table = $(tables[j]);
-      var rows = table.find('tr');
-
-      for (var i = 0; i < rows.length; i++) {
-        var columns = $(rows[i]).find('td');
-        if (columns.length == 2) {
-          parts[columns[0].textContent] = columns[1].textContent;
-        }
-      }
-    }
-    res.json(parts);  // { undefined: undefined }
-  }).catch(function (error) {
-    console.log("cheerio", error);
+router.put('/', (req, res, next) => {
+  console.log(req.body.id);
+  var bicycle = req.body;
+  models.bikes().where({ id: bicycle.id }).update({ name: bicycle.name, manu: bicycle.manu, year: bicycle.year, model: bicycle.model }).then(function(err, bicycle) {
+    if (err)
+    res.status(500).send({error: "problem editing" });
+    res.status(204).send('edited');
   });
 });
 
-// router.get('/', function(req, res, next) {
-//   fetch( api + '/api/v3/athlete?access_token=' + token)
+// router.get('/bikereg', function(req, res, next) {
+//   fetch( 'http://www.bikepedia.com/QuickBike/BikeSpecs.aspx?year=2010&brand=Specialized&model=S-Works+Tarmac+SL3+Dura+Ace')
 //   .then(function (response) {
-//     return response.json().then( )
-//   }).then(function(json) {
-//     res.json(json);
+//     return response.text()
+//   }).then(function(html) {
+//     $ = cheerio.load(html);
+//     var tables = $('table.DetailsView');
+//     var parts = {};
+//
+//     for (var j = 1; j < tables.length; j++) {
+//       var table = $(tables[j]);
+//       var rows = table.find('tr');
+//
+//       for (var i = 0; i < rows.length; i++) {
+//         var columns = $(rows[i]).find('td');
+//         if (columns.length == 2) {
+//           parts[columns[0].textContent] = columns[1].textContent;
+//         }
+//       }
+//     }
+//     res.json(parts);  // { undefined: undefined }
 //   }).catch(function (error) {
-//     console.log(error);
-//   })
+//     console.log("cheerio", error);
+//   });
 // });
 
 module.exports = router;

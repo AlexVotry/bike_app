@@ -6,43 +6,20 @@
   </ul>
 </nav>
 <div class="container">
-  <h1>Welcome {{ bike.user.firstname }} {{ bike.user.lastname }} !</h1>
-  <img ng-src="{{ bike.user.profile }}" alt="profile picture" />
+  <h1>Welcome {{ bike.user.user }} !</h1>
+  <img ng-src="{{ bike.user.pic }}" alt="profile picture" />
   <h3>List of bikes: </h3>
-  <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bike in bike.user.bikes | orderBy: bike.distance">
-    <li><a href="#">edit</a><a class="col-sm-3" ui-sref=".Tarmac">{{ bike.name }}</a> <span class="col-sm-6"> {{ bike.distance *  0.62137 | number: 0 }} miles</span> <br></li>
+  <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in bike.user.bicycles | orderBy: bicycle.distance">
+    <li>
+      <a ui-sref=".bikeForm">
+        <button class="btn btn-success col-sm-4" type="button" name="edit" ng-click="bike.editBike($index)"> Edit Bike </button>
+      </a>
+      <a class="col-sm-3" ui-sref=".Tarmac">{{ bicycle.name }}</a>
+      <span class="col-sm-6"> {{ bicycle.distance *  0.00062137 | number: 2 }} miles</span>
+       <input type="hidden" class="col-sm-3" ng-model="bike.user[$index]" /> <br>
+    </li>
   </ul>
-  <div class="what">
-  </div>
+
   <div ui-view></div>
 </div>
-<button class="btn btn-warning pull-right" type="button" name="button" ng-click="bike.partsInfo()">Parts</button>
-
-
-<input type="hidden" ng-model="bicyles" value="{{ bike.user.bikes }}" name="bicyles">
-<!-- <table class="col-sm-12" >
-      <thead>
-        <tr>
-          <th></th>
-          <th> Bike Name: </th>
-          <th> Miles </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr ng-repeat="bike in bike.user.bikes | orderBy: bike.distance" >
-          <td class="col-sm-4 final">
-            <form >
-              <input class="col-sm-3" ng-model="bike.user.bikes[$index].id" />
-              <span>
-                <button class="btn btn-warning" ng-click="bike.user.change(bike.user.finalTea[$index].amt, $index)">
-                  edit
-                </button>
-              <span><button class="btn btn-danger" ng-click="bike.user.delete($index)">remove</button></td>
-            </form>
-          <td class="final"><img class="chkoutImg" ng-src="{{tea.imageUrl}}"><span> {{ tea.name }}</span>
-          <td class="ppi">{{ (tea.price / 100) | currency }} </td>
-          <td class="ppi"> {{ (tea.price * tea.amt / 100) | currency }} </td>
-        </tr>
-      </tbody>
-    </table> -->
+<button class="btn btn-warning pull-right" type="button" name="button" >Parts</button>
