@@ -32,25 +32,32 @@ passport.use(new StravaStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     const newID = profile.id;
-    for (let i = 0; i < profile._json.bikes.length; i++) {
-      if(models.newId('bikes', newID)) {
+    const newBikes = profile._json.bikes;
+    for (var i = 0; i < newBikes.length; i++) {
+      if(true) {
+        console.log('yes');
         models.bikes().insert({
-          bID: profile._json.bikes[i].id,
+          bID: newBikes[i].id,
           ID: profile.id,
-          name: profile._json.bikes[i].name,
-          distance: profile._json.bikes[i].distance
+          name: newBikes[i].name,
+          distance: newBikes[i].distance,
+          manu: "unspecified",
+          year: "unspecified",
+          model: "unspecified"
         }).then();
       } else {
-        models.bikes().where({bID: profile._json.bikes[i].id}).update({
-          distance: profile._json.bikes[i].distance
+        models.bikes().where({bID: newBikes[i].id}).update({
+          distance: newBikes[i].distance
         }).then();
       }
-      console.log(profile._json.bikes[i].distance);
 
     };
     if (models.newId('athletes', newID)) {
+      console.log('whate');
+      models.athletes().select().then((them) => {
+      });
       models.athletes().insert({
-      ID: profile.id,
+      ID: newID,
       firstname: profile.name.givenName,
       lastname: profile.name.familyName,
       picture: profile.photos[0].value,

@@ -20,13 +20,20 @@ router.get('/', (req, res, next) => {
   })
 });
 
+// router.get('/:id', (req, res, next) => {
+//   models.bikes().select().where({ bID : req.params.id }).then(bikeInfo => {
+//     res.json(bikeInfo);
+//   }).catch(function (error) {
+//     console.log(error);
+//   })
+// });
+
 router.put('/', (req, res, next) => {
-  console.log(req.body.id);
   var bicycle = req.body;
-  models.bikes().where({ id: bicycle.id }).update({ name: bicycle.name, manu: bicycle.manu, year: bicycle.year, model: bicycle.model }).then(function(err, bicycle) {
-    if (err)
-    res.status(500).send({error: "problem editing" });
-    res.status(204).send('edited');
+  models.bikes().where({ bID: bicycle.bID }).update({ name: bicycle.name, manu: bicycle.manu, year: bicycle.year, model: bicycle.model })
+  .then()
+  .catch(function (error) {
+    console.log(error);
   });
 });
 

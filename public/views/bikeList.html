@@ -11,15 +11,31 @@
   <h3>List of bikes: </h3>
   <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in bike.user.bicycles | orderBy: bicycle.distance">
     <li>
-      <a ui-sref=".bikeForm">
-        <button class="btn btn-success col-sm-4" type="button" name="edit" ng-click="bike.editBike($index)"> Edit Bike </button>
-      </a>
+      <!-- <a ui-sref=".bikeForm"> -->
+        <button class="btn btn-success col-sm-4" type="button" name="edit" ng-click="bike.bikeForm($index)"> Edit Bike </button>
+      <!-- </a> -->
       <a class="col-sm-3" ui-sref=".Tarmac">{{ bicycle.name }}</a>
       <span class="col-sm-6"> {{ bicycle.distance *  0.00062137 | number: 2 }} miles</span>
        <input type="hidden" class="col-sm-3" ng-model="bike.user[$index]" /> <br>
     </li>
   </ul>
-
+{{ bike.thisID }}
   <div ui-view></div>
 </div>
 <button class="btn btn-warning pull-right" type="button" name="button" >Parts</button>
+
+
+<form name="thisBike" class="form-group" ng-submit="bike.editBike(bike.thisBike)" ng-show="bike.bikeFormShow">
+  <h2>Bike Description: </h2>
+  <h3> {{ bike.thisBike.name }}</h3>
+  <h4 ng-click="bike.nameForm = !bike.nameForm">Name:  {{ bike.thisBike.name }}</h4>
+      <span ng-show="bike.nameForm"><input type="text" ng-model="bike.thisBike.name" autofocus ></span>
+  <h4 ng-click="bike.nameForm = !bike.nameForm">Manufacturer:  {{ bike.thisBike.manu }}</h4>
+      <span ng-show="bike.nameForm"><input type="text" ng-model="bike.thisBike.manu" ></span>
+  <h4 ng-click="bike.nameForm = !bike.nameForm">Year:  {{ bike.thisBike.year }}</h4>
+      <span ng-show="bike.nameForm"><input type="text" ng-model="bike.thisBike.year" ></span>
+  <h4 ng-click="bike.nameForm = !bike.nameForm">Model:  {{ bike.thisBike.model }}</h4>
+      <span ng-show="bike.nameForm"><input type="text" ng-model="bike.thisBike.model" ></span><br>
+  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
+  <button type="button" class="btn btn-primary col-sm-3" ng-click="bike.bikeFormShow = false">Close</button>
+</form>
