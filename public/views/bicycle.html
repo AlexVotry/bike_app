@@ -1,12 +1,17 @@
 <h3>Bike Description: </h3>
-<p> hello {{ bike.thisBike }}</p>
+<p> hello {{ bicycle.thisBike }}</p>
 
-<form name="thisBike" class="form-group" ng-submit="bike.editBike(bike.bikeInfo)">
-{{ bicycle.name }}
-  <li ng-click="bike.nameForm = !bike.nameForm">{{ bike.user.name }}</li>
-  <input type="text" class="form-control" name="name" ng-model="bike.bikeInfo.name" placeholder="Bike name">
-  <input type="text" class="form-control" name="manu" ng-model="bike.bikeInfo.manu" placeholder="Bike manufacturer">
-  <input type="text" class="form-control" name="year" ng-model="bike.bikeInfo.year" placeholder="Bike accessory">
-  <input type="text" class="form-control" name="model" ng-model="bike.bikeInfo.model" placeholder="Bike image">
-  <button type="submit" class="btn btn-primary col-sm-3" name="addIt" >Update!</button>
+<form name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
+  <h2>Bike Description: </h2>
+  <h3> {{ bicycle.thisBike.name }}</h3>
+  <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
+      <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
+  <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  {{ bicycle.thisBike.manu }}</h4>
+      <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.thisBike.manu" ></span>
+  <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  {{ bicycle.thisBike.year }}</h4>
+      <span ng-show="bicycle.yearForm"><input type="text" ng-model="bicycle.thisBike.year" ></span>
+  <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  {{ bicycle.thisBike.model }}</h4>
+      <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" ></span><br>
+  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
+  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
 </form>

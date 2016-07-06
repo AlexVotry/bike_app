@@ -9,7 +9,8 @@
     let chosen = [];
     let stravaData = {};
     let url = "/users";
-    var all = {};
+    var all = {bicycles: []};
+    // var parts =
     return {
       user: function() {
         return $http.get(url)
@@ -17,7 +18,6 @@
           var stravaData = result.data;
           all.user = `${stravaData[0].firstname} ${stravaData[0].lastname}`;
           all.pic = stravaData[0].picture;
-          all.bicycles = [];
           for (var i = 0; i < stravaData.length; i++) {
             all.bicycles.push({
               bID : stravaData[i].bID,
@@ -31,19 +31,34 @@
           return all;
         });
       },
-      thisBicycle: function(index) {
-        return all.bicycles[index];
+      thisBicycle: function(bID) {
+        for (var i = 0; i < all.bicycles.length; i++) {
+          if  (all.bicycles[i].bID = bID) {
+            return all.bicycles[i];
+          }
+        }
       },
-
       editBike: function(bicycle) {
         $http.put(`${url}/`, bicycle)
       },
 
-      partsData: function() {
-        return $http.get(`${url}/bikereg`)
+      partsData: function(bikeId) {
+        return $http.get(`${url}/${bikeId}`)
         .then((result) => {
+          // parts = result.data;
+          console.log('result: ', result.data);
           return result.data;
         })
+      },
+      getDistance: function (bikeId) {
+        for (var i = 0; i < all.bicycles.length; i++) {
+          if  (all.bicycles[i].bID = bikeId) {
+            return all.bicycles[i].distance;
+          }
+        }
+      // partsDistance: function(dist) {
+      //
+      // }
       }
     }
   }

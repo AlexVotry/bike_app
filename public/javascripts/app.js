@@ -17,33 +17,26 @@
       .state('bikeList', {
         url: '/bikeList',
         templateUrl: 'views/bikeList.html',
-        controllerAs: 'bike',
-        controller: 'PartsController',
+        controllerAs: 'home',
+        controller: 'HomeController',
         authenticate: true
       })
-      .state('bikeList.Tarmac', {
-        url: "/Tarmac",
-        templateUrl: 'views/list.html',
-        controllerAs: 'bike',
-        controller: 'PartsController'
-        })
-      .state('bikeList.bikeForm', {
-        url: "/bikeForm",
+      .state('bikeForm', {
+        url: "/bikeForm/:bID",
         templateUrl: 'views/bicycle.html',
-        controllerAs: 'bike',
+        controllerAs: 'bicycle',
+        controller: 'BikeController'
+      })
+      .state('partsForm', {
+        url: '/partsForm/:bID',
+        templateUrl: 'views/parts.html',
+        controllerAs: 'parts',
         controller: 'PartsController'
       })
       .state('logout', {
         url: '/logout',
         templateUrl: 'views/logout.html',
       })
-        // .state('bikeList.lol', {
-        //   url: '/LordoftheRings',
-        //   templateUrl: 'views/list.html',
-        //   controller: function($scope) {
-        //     $scope.list = ["Frodo Baggins", "Peregrin Took", "Sauron", "Gollum", "Aragorn"];
-        //   }
-        // })
     };
 
   })();

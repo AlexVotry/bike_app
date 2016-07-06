@@ -33,42 +33,40 @@ passport.use(new StravaStrategy({
   function(accessToken, refreshToken, profile, done) {
     const newID = profile.id;
     const newBikes = profile._json.bikes;
-    for (var i = 0; i < newBikes.length; i++) {
-      if(true) {
-        console.log('yes');
-        models.bikes().insert({
-          bID: newBikes[i].id,
-          ID: profile.id,
-          name: newBikes[i].name,
-          distance: newBikes[i].distance,
-          manu: "unspecified",
-          year: "unspecified",
-          model: "unspecified"
-        }).then();
-      } else {
-        models.bikes().where({bID: newBikes[i].id}).update({
-          distance: newBikes[i].distance
-        }).then();
+    models.newId('athletes', newID).then(newId => {
+      console.log(newId);
+      if(newId) {
+        models.athletes().insert({
+        ID: newID,
+        firstname: profile.name.givenName,
+        lastname: profile.name.familyName,
+        picture: profile.photos[0].value,
+        accessToken: profile.token
+      }, '*').then(newUser =>  {
+          for (var i = 0; i < newBikes.length; i++) {
+            models.bikes().insert({
+              bID: newBikes[i].id,
+              ID: newID,
+              name: newBikes[i].name,
+              distance: newBikes[i].distance,
+              manu: "unspecified",
+              year: "unspecified",
+              model: "unspecified"
+            }).then();
+          };
+          return done(null, newUser);
+        });
       }
-
-    };
-    if (models.newId('athletes', newID)) {
-      console.log('whate');
-      models.athletes().select().then((them) => {
-      });
-      models.athletes().insert({
-      ID: newID,
-      firstname: profile.name.givenName,
-      lastname: profile.name.familyName,
-      picture: profile.photos[0].value,
-      accessToken: profile.token
-      }, '*').then(newUser => {
-        return done(null, newUser);
-      });
-    } else {
-    return done(null, profile);
-  };
-}));
+        else {
+          for (var i = 0; i < newBikes.length; i++) {
+            models.bikes().where({bID: newBikes[i].id}).update({
+              distance: newBikes[i].distance
+            }).then();
+            return done(null, profile);
+          }
+        }
+    });
+  }));
 const app = express();
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -99,7 +97,6 @@ app.get('/auth/strava/callback',
   passport.authenticate('strava', { failureRedirect: '/' }),
   function(req, res) {
     console.log('authenticated!');
-    // console.log('req.user', req.user);
     res.redirect('/#/bikeList');
   });
 

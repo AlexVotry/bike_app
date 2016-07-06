@@ -20,13 +20,13 @@ router.get('/', (req, res, next) => {
   })
 });
 
-// router.get('/:id', (req, res, next) => {
-//   models.bikes().select().where({ bID : req.params.id }).then(bikeInfo => {
-//     res.json(bikeInfo);
-//   }).catch(function (error) {
-//     console.log(error);
-//   })
-// });
+router.get('/:id', (req, res, next) => {
+  models.allParts(req.params.id).select().then(partsInfo => {
+    res.json(partsInfo);
+  }).catch(function (error) {
+    console.log(error);
+  })
+});
 
 router.put('/', (req, res, next) => {
   var bicycle = req.body;
@@ -36,6 +36,8 @@ router.put('/', (req, res, next) => {
     console.log(error);
   });
 });
+
+// .where({ bID : req.params.id })
 
 // router.get('/bikereg', function(req, res, next) {
 //   fetch( 'http://www.bikepedia.com/QuickBike/BikeSpecs.aspx?year=2010&brand=Specialized&model=S-Works+Tarmac+SL3+Dura+Ace')

@@ -1,0 +1,89 @@
+<h2>Parts List:<h2>
+{{ parts.bikeDistance }}
+<h3>Components</h3>
+<div class="row col-sm-12">
+  <h4 class="col-sm-2" ng-click="partsbrakesForm = !partsbrakesForm">Brakeset: </h4>
+      <span ng-show="partsbrakesForm"><input type="text" ng-model="parts.theseParts.Brakeset" ></span><h4 class="col-sm-3"> {{ parts.theseParts.Brakeset }}</h4><h4>{{ parts.theseParts.brakeDistance }}</h4><br>
+
+  <h4 ng-click="partsleverForm = !partsleverForm">Shift Levers: {{ parts.theseParts.ShiftLevers }}</h4>
+      <span ng-show="partsleverForm"><input type="text" ng-model="parts.theseParts.ShiftLevers" ></span><br>
+
+  <h4 ng-click="partsfrontForm = !partsfrontForm">Front Derailleur:  {{ parts.theseParts.FrontDerailleur }}</h4>
+      <span ng-show="partsfrontForm"><input type="text" ng-model="parts.theseParts.FrontDerailleur" ></span><br>
+
+  <h4 ng-click="partsrearForm = !partsrearForm">Rear Derailleur:  {{ parts.theseParts.RearDerailleur }}</h4>
+      <span ng-show="partsrearForm"><input type="text" ng-model="parts.theseParts.RearDerailleur" ></span><br>
+
+  <h4 ng-click="partsCranksetForm = !partsCranksetForm">Crankset:  {{ parts.theseParts.Crankset }}</h4>
+      <span ng-show="partsCranksetForm"><input type="text" ng-model="parts.theseParts.Crankset" ></span><br>
+
+  <h4 ng-click="partsPedalsForm = !partsPedalsForm">Pedals: {{ parts.theseParts.Pedals }}</h4>
+      <span ng-show="partsPedalsForm"><input type="text" ng-model="parts.theseParts.Pedals" ></span><br>
+
+  <h4 ng-click="bicycleBottomBracketForm = !bicycleBottomBracketForm">Bottom Bracket:  {{ parts.theseParts.BottomBracket }}</h4>
+      <span ng-show="bicycleBottomBracketForm"><input type="text" ng-model="parts.theseParts.BottomBracket" ></span><br>
+
+  <h4 ng-click="bicycleBBShellWidthForm = !bicycleBBShellWidthForm">BB Shell Width:  {{ parts.theseParts.BBShellWidth }}</h4>
+      <span ng-show="bicycleBBShellWidthForm"><input type="text" ng-model="parts.theseParts.BBShellWidth" ></span><br>
+
+  <h4 ng-click="partsRearCogsForm = !partsRearCogsForm">Rear Cogs:  {{ parts.theseParts.RearCogs }}</h4>
+      <span ng-show="partsRearCogsForm"><input type="text" ng-model="parts.theseParts.RearCogs" ></span><br>
+
+  <h4 ng-click="partsChainForm = !partsChainForm">Chain:  {{ parts.theseParts.Chain }}</h4>
+      <span ng-show="partsChainForm"><input type="text" ng-model="parts.theseParts.Chain" ></span><br>
+
+  <h4 ng-click="partsSeatpostForm = !partsSeatpostForm">Seatpost:  {{ parts.theseParts.Seatpost }}</h4>
+      <span ng-show="partsSeatpostForm"><input type="text" ng-model="parts.theseParts.Seatpost" ></span><br>
+
+  <h4 ng-click="partsSaddleForm = !partsSaddleForm">Saddle:  {{ parts.theseParts.Saddle }}</h4>
+      <span ng-show="partsSaddleForm"><input type="text" ng-model="parts.theseParts.Saddle" ></span><br>
+
+  <h4 ng-click="partsHandlebarForm = !partsHandlebarForm">Handlebar:  {{ parts.theseParts.Handlebar }}</h4>
+      <span ng-show="partsHandlebarForm"><input type="text" ng-model="parts.theseParts.Handlebar" ></span><br>
+
+  <h4 ng-click="partsHandlebarExtensionsForm = !partsHandlebarExtensionsForm">Handlebar Extensions:  {{ parts.theseParts.HandlebarExtensions }}</h4>
+      <span ng-show="partsHandlebarExtensionsForm"><input type="text" ng-model="parts.theseParts.HandlebarExtensions" ></span><br>
+
+  <h4 ng-click="partsHandlebarStemForm = !partsHandlebarStemForm">Handlebar Stem:  {{ parts.theseParts.HandlebarStem }}</h4>
+      <span ng-show="partsHandlebarStemForm"><input type="text" ng-model="parts.theseParts.HandlebarStem" ></span><br>
+
+  <h4 ng-click="partsHeadsetForm = !partsHeadsetForm">Headset:  {{ parts.theseParts.Headset }}</h4>
+      <span ng-show="partsHeadsetForm"><input type="text" ng-model="parts.theseParts.Headset" ></span><br>
+
+  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
+  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button><br>
+
+
+  <h3>Frame and Fork: </h3>
+
+  <h4 ng-click="partstubingForm = !partstubingForm">Tubing:  {{ parts.theseParts.tubing }}</h4>
+      <span ng-show="partstubingForm"><input type="text" ng-model="parts.theseParts.tubing" ></span><br>
+
+  <h4 ng-click="partsforkForm = !partsforkForm">Fork:  {{ parts.theseParts.fork }}</h4>
+      <span ng-show="partsforkForm"><input type="text" ng-model="parts.theseParts.fork" ></span><br>
+
+  <h4 ng-click="partsrearShock = !partsrearShock">Rear Shock:  {{ parts.theseParts.rearShock }}</h4>
+      <span ng-show="partsrearShock"><input type="text" ng-model="parts.thesePartsrearShock" ></span><br>
+
+  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
+  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button><br>
+
+<h3>Wheels: </h3>
+
+  <h4 ng-click="partsHubsForm = !partsHubsForm">Hubs:  {{ parts.theseParts.Hubs }}</h4>
+      <span ng-show="partsHubsForm"><input type="text" ng-model="parts.theseParts.Hubs" ></span><br>
+  <h4 ng-click="partsRimsForm = !partsRimsForm">Rims:  {{ parts.theseParts.Rims }}</h4>
+      <span ng-show="partsRimsForm"><input type="text" ng-model="parts.theseParts.Rims" ></span><br>
+  <h4 ng-click="partsTiresForm = !partsTiresForm">Tires:  {{ parts.theseParts.Tires }}</h4>
+      <span ng-show="partsTiresForm"><input type="text" ng-model="parts.theseParts.Tires" ></span><br>
+  <h4 ng-click="partsSpokesForm = !partsSpokesForm">Spokes:  {{ parts.theseParts.Spokes }}</h4>
+      <span ng-show="partsSpokesForm"><input type="text" ng-model="parts.theseParts.Spokes" ></span><br>
+  <h4 ng-click="partsSpokeNipplesForm = !partsSpokeNipplesForm">SpokeNipples:  {{ parts.theseParts.SpokeNipples }}</h4>
+      <span ng-show="partsSpokeNipplesForm"><input type="text" ng-model="parts.theseParts.SpokeNipples" ></span><br>
+
+
+
+
+
+  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
+  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>

@@ -3,16 +3,12 @@
 
   angular
     .module('bikes')
-    .controller('PartsController', PartsController);
+    .controller('BikeController', BikeController);
 
-  function PartsController(Stats, $location, $stateParams) {
+  function BikeController(Stats, $location, $stateParams) {
     let vm = this;
     let bikeId = $stateParams.bID;
-    vm.bikeDistance = Stats.getDistance(bikeId);
-    console.log(vm.bikeDistance, ' bikeDistance');
-    Stats.partsData(bikeId).then(partInfo => {
-      vm.theseParts = partInfo[0];
-    });
+    vm.thisBike = Stats.thisBicycle(bikeId);
 
     vm.editBike = function() {
       console.log(vm.thisBike);

@@ -7,8 +7,8 @@ module.exports = {
   athletes: function athletes() {
     return knex('athletes');
   },
-  frameAndFork: function frameAndFork() {
-    return knex('frameAndFork');
+  frame_fork: function frame_fork() {
+    return knex('frame_fork');
   },
   components: function components() {
     return knex('components');
@@ -20,12 +20,22 @@ module.exports = {
     return knex('athletes')
     .join('bikes', {'bikes.ID': 'athletes.ID'});
   },
+  allParts: function allParts(bikeId) {
+    console.log(bikeId, " bikeId");
+    return knex('components').where({ 'components.bID' : bikeId })
+    .join('frame_fork', { 'frame_fork.bID': 'components.bID' })
+    .join('wheels', { 'wheels.bID': 'frame_fork.bID'});
+  },
   newId: function newId(table, id) {
-    knex(table).where({ ID: id })
+    return knex(table).where({ ID: id })
     .first()
     .then((exists) => {
       if (!exists) {
         return true;
+        console.log("trueDat");
+      } else {
+        console.log(exists);
+        return false;
       }
     });
   },

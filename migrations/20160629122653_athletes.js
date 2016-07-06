@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
       table.integer('distance').defaultTo(0);
       table.timestamps();
     }),
-    knex.schema.createTable('frameAndFork', table => {
+    knex.schema.createTable('frame_fork', table => {
       table.increments('pID').primary();
       table.string('bID').references('bID').inTable('bikes');
       table.string('tubing');
@@ -44,7 +44,7 @@ exports.up = function(knex, Promise) {
       table.string('BottomBracket');
       table.integer('bbDistance');
       table.string('BBShellWidth');
-      table.string('Rear Cogs');
+      table.string('RearCogs');
       table.integer('cogDistance');
       table.string('Chain');
       table.integer('chainDistance');
@@ -74,9 +74,9 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('athletes');
-  return knex.schema.dropTable('bikes');
-  return knex.schema.dropTable('frameAndFork');
+  return knex.schema.dropTable('frame_fork');
   return knex.schema.dropTable('components');
   return knex.schema.dropTable('wheels');
+  return knex.schema.dropTable('bikes');
+  return knex.schema.dropTable('athletes');
 };
