@@ -1,3 +1,5 @@
+'use strict;'
+
 const express = require('express');
 const fetch = require("node-fetch");
 const cheerio = require('cheerio')
@@ -30,14 +32,86 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/', (req, res, next) => {
   var bicycle = req.body;
-  models.bikes().where({ bID: bicycle.bID }).update({ name: bicycle.name, manu: bicycle.manu, year: bicycle.year, model: bicycle.model })
-  .then()
+  models.bikes().where({ bID: bicycle.bID }).update({
+    name: bicycle.name,
+    manu: bicycle.manu,
+    year: bicycle.year,
+    model: bicycle.model
+  }).then()
   .catch(function (error) {
     console.log(error);
   });
 });
 
-// .where({ bID : req.params.id })
+router.put('/parts', (req, res, next) => {
+  var parts = req.body;
+  models.components().where({ bID: parts.bID }).update({
+    Brakeset:	parts.Brakeset,
+    ShiftLevers: parts.ShiftLevers,
+    FrontDerailleur:	parts.FrontDerailleur,
+    RearDerailleur:	parts.RearDerailleur,
+    Crankset:	parts.Crankset,
+    Pedals:	parts.Pedals,
+    BottomBracket:	parts.BottomBracket,
+    BBShellWidth:	parts.BBShellWidth,
+    RearCogs: parts.RearCogs,
+    Chain: parts.Chain,
+    Seatpost:	parts.Seatpost,
+    Saddle:	parts.Saddle,
+    Handlebar: parts.Handlebar,
+    HandlebarExtensions: parts.HandlebarExtensions,
+    HandlebarStem:	parts.HandlebarStem,
+    Headset:	parts.Headset,
+    Cables: parts.Cables,
+    brakeDistance: parts.brakeDistance,
+    leverDistance: parts.leverDistance,
+    fdDistance: parts.fdDistance,
+    rdDistance: parts.rdDistance,
+    cranksetDistance: parts.cranksetDistance,
+    pedalDistance: parts.pedalDistance,
+    bbDistance: parts.bbDistance,
+    cogDistance: parts.cogDistance,
+    chainDistance: parts.chainDistance,
+    saddleDistance: parts.saddleDistance,
+    headsetDistance: parts.headsetDistance,
+    cableDistance: parts.cableDistance,
+    paddistance: parts.paddistance
+  }).then()
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+router.put('/forks', (req, res, next) => {
+  var forks = req.body;
+  models.frame_fork().where({ bID: forks.bID }).update({
+    tubing: forks.tubing,
+    fork: forks.fork,
+    forkDistance: forks.forkDistance,
+    rearShock: forks.rearShock,
+    rearDistance: forks.rearDistance
+  }).then()
+  .catch(function (error) {
+    console.log(error);
+  });
+})
+
+router.put('/wheels', (req, rew, next) => {
+  var wheels = req.body;
+  models.wheels().where({ bID: wheels.bID }).update({
+    Hubs:	wheels.Hubs,
+    hubDistance: wheels.hubDistance,
+    Rims:	wheels.Rims,
+    rimDistance: wheels.rimDistance,
+    Tires: wheels.Tires,
+    tireDistance: wheels.tireDistance,
+    Spokes:	wheels.Spokes,
+    SpokeNipples: wheels.SpokeNipples
+  }).then()
+  .catch(function (error) {
+    console.log(error);
+  });
+})
 
 // router.get('/bikereg', function(req, res, next) {
 //   fetch( 'http://www.bikepedia.com/QuickBike/BikeSpecs.aspx?year=2010&brand=Specialized&model=S-Works+Tarmac+SL3+Dura+Ace')

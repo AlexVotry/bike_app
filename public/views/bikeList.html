@@ -11,7 +11,7 @@
   <h3>List of bikes: </h3>
   <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in home.user.bicycles | orderBy: bicycle.distance">
     <li>
-        <button class="btn btn-success col-sm-4" type="button" name="edit"  ui-sref="partsForm({bID: bicycle.bID})"> Edit Bike </button>
+        <button class="btn btn-success col-sm-4" type="button" name="edit"  ui-sref="bikeForm({bID: bicycle.bID})"> Edit Bike </button>
       <a class="col-sm-3" ui-sref="partsForm({bID: bicycle.bID})">{{ bicycle.name }}</a>
       <span class="col-sm-6"> {{ bicycle.distance *  0.00062137 | number: 2 }} miles</span>
        <input type="hidden" class="col-sm-3" ng-model="home.user.bicycle.bID" /> <br>

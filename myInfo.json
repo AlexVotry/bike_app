@@ -120,3 +120,11 @@ Wheels
   "Spoke Brand":	"Unspecified",
   "Spoke Nipples:"	"Unspecified"
   }
+
+  const newID = profile.id;
+  const newBikes = profile._json.bikes;
+  models.newId('athletes', newID).then(newId => {
+    models.newAthlete(profile)
+        }
+    });
+  }));

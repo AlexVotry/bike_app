@@ -9,8 +9,7 @@
     let chosen = [];
     let stravaData = {};
     let url = "/users";
-    var all = {bicycles: []};
-    // var parts =
+    let all = {bicycles: []};
     return {
       user: function() {
         return $http.get(url)
@@ -33,33 +32,14 @@
       },
       thisBicycle: function(bID) {
         for (var i = 0; i < all.bicycles.length; i++) {
-          if  (all.bicycles[i].bID = bID) {
+          if  (all.bicycles[i].bID === bID) {
             return all.bicycles[i];
           }
         }
       },
       editBike: function(bicycle) {
-        $http.put(`${url}/`, bicycle)
+        $http.put(`${url}/`, bicycle);
       },
-
-      partsData: function(bikeId) {
-        return $http.get(`${url}/${bikeId}`)
-        .then((result) => {
-          // parts = result.data;
-          console.log('result: ', result.data);
-          return result.data;
-        })
-      },
-      getDistance: function (bikeId) {
-        for (var i = 0; i < all.bicycles.length; i++) {
-          if  (all.bicycles[i].bID = bikeId) {
-            return all.bicycles[i].distance;
-          }
-        }
-      // partsDistance: function(dist) {
-      //
-      // }
-      }
     }
   }
 })();

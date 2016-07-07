@@ -5,23 +5,27 @@
     .module('bikes')
     .controller('PartsController', PartsController);
 
-  function PartsController(Stats, $location, $stateParams) {
+  function PartsController(Parts, $location, $stateParams) {
     let vm = this;
     let bikeId = $stateParams.bID;
-    vm.bikeDistance = Stats.getDistance(bikeId);
-    console.log(vm.bikeDistance, ' bikeDistance');
-    Stats.partsData(bikeId).then(partInfo => {
-      vm.theseParts = partInfo[0];
+    Parts.partsData(bikeId).then(partInfo => {
+        vm.theseParts = partInfo.comps;
+        vm.used = partInfo.used;
+        vm.togo = partInfo.toGo;
+
     });
 
-    vm.editBike = function() {
-      console.log(vm.thisBike);
-      let bicycle = vm.thisBike;
-      Stats.editBike(bicycle);
-      vm.nameForm = false;
-      vm.manuForm = false;
-      vm.yearForm = false;
-      vm.modelForm = false;
+    vm.editParts = function() {
+      let allParts = vm.theseParts;
+      Parts.editParts(allParts);
+    }
+    vm.editForks = function() {
+      let allParts = vm.theseParts;
+      Parts.editForks(allParts);
+    }
+    vm.editWheels = function() {
+      let allParts = vm.theseParts;
+      Parts.editWheels(allParts);
     }
   };
 })();

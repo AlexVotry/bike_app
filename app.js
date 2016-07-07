@@ -31,42 +31,19 @@ passport.use(new StravaStrategy({
     callbackURL: process.env.Host + "/auth/strava/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    const newID = profile.id;
-    const newBikes = profile._json.bikes;
-    models.newId('athletes', newID).then(newId => {
-      console.log(newId);
+    models.newId('athletes', profile.id).then(newId => {
       if(newId) {
-        models.athletes().insert({
-        ID: newID,
-        firstname: profile.name.givenName,
-        lastname: profile.name.familyName,
-        picture: profile.photos[0].value,
-        accessToken: profile.token
-      }, '*').then(newUser =>  {
-          for (var i = 0; i < newBikes.length; i++) {
-            models.bikes().insert({
-              bID: newBikes[i].id,
-              ID: newID,
-              name: newBikes[i].name,
-              distance: newBikes[i].distance,
-              manu: "unspecified",
-              year: "unspecified",
-              model: "unspecified"
-            }).then();
-          };
+        models.newAthlete(profile).then(newUser =>  {
+          models.newBike(profile).then();
           return done(null, newUser);
         });
+      } else {
+        models.existingBike(profile).then();
+        return done(null, profile);
       }
-        else {
-          for (var i = 0; i < newBikes.length; i++) {
-            models.bikes().where({bID: newBikes[i].id}).update({
-              distance: newBikes[i].distance
-            }).then();
-            return done(null, profile);
-          }
-        }
     });
   }));
+
 const app = express();
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
