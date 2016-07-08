@@ -7,7 +7,6 @@ exports.seed = function(knex, Promise) {
 
     knex('components').insert({
       bID: "b30856",
-      distance: 11766045,
       Brakeset:	"Shimano Dura-Ace brakes, Shimano Dura-Ace levers",
       brakeDistance: 0,
       ShiftLevers:	"Shimano Dura-Ace STI",

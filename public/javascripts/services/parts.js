@@ -12,57 +12,58 @@
     let limits = [];
     return {
       partsData: function(bikeId) {
+        console.log(bikeId);
         return $http.get(`${url}/${bikeId}`)
         .then((result) => {
           let comps = result.data[0];
-          let totalDist = comps.distance;
+          let totalDist = parseInt(comps.distance * 0.00062137);
+          comps.distance = totalDist;
           dist = [
-            comps.forkDistance,
-            comps.rearDistance,
-            comps.paddistance,
-            comps.leverDistance,
-            comps.fdDistance,
-            comps.rdDistance,
-            comps.cranksetDistance,
-            comps.pedalDistance,
-            comps.bbDistance,
-            comps.cogDistance,
-            comps.chainDistance,
-            comps.saddleDistance,
-            comps.headsetDistance,
-            comps.cableDistance,
-            comps.hubDistance,
-            comps.rimDistance,
-            comps.tireDistance
+            'forkDistance',
+            'rearDistance',
+            'padDistance',
+            'leverDistance',
+            'fdDistance',
+            'rdDistance',
+            'cranksetDistance',
+            'pedalDistance',
+            'bbDistance',
+            'cogDistance',
+            'chainDistance',
+            'saddleDistance',
+            'headsetDistance',
+            'cableDistance',
+            'hubDistance',
+            'rimDistance',
+            'tireDistance'
           ];
           limits = [
-            comps.seals_dist,
-            comps.seals_dist,
-            comps.pad_dist,
-            comps.lever_dist,
-            comps.fd_dist,
-            comps.rd_dist,
-            comps.crank_dist,
-            comps.pedal_dist,
-            comps.bb_dist,
-            comps.cog_dist,
-            comps.chain_dist,
-            comps.saddle_dist,
-            comps.headset_dist,
-            comps.cable_dist,
-            comps.hub_dist,
-            comps.rim_dist,
-            comps.tire_dist,
-            comps.pulleys_dist,
-            comps.cleats_dist
+            'seals_dist',
+            'seals_dist',
+            'pad_dist',
+            'lever_dist',
+            'fd_dist',
+            'rd_dist',
+            'crank_dist',
+            'pedal_dist',
+            'bb_dist',
+            'cog_dist',
+            'chain_dist',
+            'saddle_dist',
+            'headset_dist',
+            'cable_dist',
+            'hub_dist',
+            'rim_dist',
+            'tire_dist',
+            'pulleys_dist',
+            'cleats_dist'
           ]
           function spent(dist,limits) {
             for (var i = 0; i < dist.length; i++) {
-              // used miles:
-              let wornMiles = parseInt((totalDist - dist[i]) * 0.00062137);
+              let wornMiles = parseInt((totalDist) - comps[dist[i]]);
               parts.used.push(wornMiles);
               // miles left to go:
-              parts.toGo.push(limits[i] - wornMiles);
+              parts.toGo.push(comps[limits[i]]);
             }
           };
           spent(dist, limits);
@@ -71,18 +72,36 @@
           return parts;
         })
       },
-      resetPartsMileage: function() {
-
+      resetPartsMileage: function(miles, index) {
+        var usedMiles = parts.comps.distance - miles;
+        var info = {bikeId: parts.comps.bID, reset: usedMiles, columnName: parts.dist[index]}
+        $http.put(`${url}/mileage`, info);
       },
       editParts: function(allParts) {
         $http.put(`${url}/parts`, allParts)
-      },
-      editForks: function(allParts) {
-        $http.put(`${url}/forks`, allParts)
-      },
-      editWheels: function(allParts) {
-        $http.put(`${url}/wheels`, allParts)
-      },
+      }
     }
   }
 })();
+
+
+  printOut: function (parts) {
+  for (var i = 0; i < array.length; i++) {
+    document.write(
+      <div class="row col-sm-12">
+      <h4 class="col-sm-2 description" ng-click="partsbrakesForm = !partsbrakesForm">Brakeset: </h4>
+      <h4 class="col-sm-3" ng-click="partsbrakesForm = !partsbrakesForm"> {{ parts.theseParts.Brakeset }}</h4>
+      <h4 class="col-sm-2" ng-click="partsused2= !partsused2">pads: {{ parts.used[2] }}</h4>
+      <button type="submit" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" name="addIt" ng-click="parts.mileageReset(0, 2)">replaced!</button>
+      <h4 class="col-sm-2">pads: {{ parts.togo[2] - parts.used[2] }}</h4>
+    </div>
+    <div class="row col-sm-12">
+      <div class="col-sm-4" ng-show="partsbrakesForm">
+        <input type="text" ng-model="parts.theseParts.Brakeset" ></div>
+      <div class="col-sm-2" ng-show="partsused2">
+        <input type="number" ng-model="parts.used[2]" ng-change="parts.mileageReset(parts.used[2], 2)">
+      </div>
+    </div>
+  )
+  }
+}

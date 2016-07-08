@@ -10,26 +10,24 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTable('bikes', table => {
       table.string('bID').primary();
-      table.string('ID').references('ID').inTable('athletes');
+      table.string('ID').references('ID').inTable('athletes').onDelete('cascade');
       table.string('name');
       table.string('manu').defaultTo('unspecified');
       table.string('year').defaultTo('unspecified');
       table.string('model').defaultTo('unspecified');
-      table.integer('distance').defaultTo(0);
+      table.integer('distance');
       table.timestamps();
     }),
-    knex.schema.createTable('frame_fork', table => {
+    knex.schema.createTable('components', table => {
       table.increments('pID').primary();
-      table.string('bID').references('bID').inTable('bikes');
+      table.string('bID').references('bID').inTable('bikes').onDelete('cascade');
+      table.integer('distance');
       table.string('tubing').defaultTo('unspecified');
-      table.integer('distance').defaultTo(bikes.distance);
       table.string('fork').defaultTo('unspecified');
       table.integer('forkDistance').defaultTo(0);
       table.string('rearShock').defaultTo('unspecified');
-      table.string('rearDistance').defaultTo('unspecified');
-    }),
-    knex.schema.createTable('components', table => {
-      table.string('bID').references('bID').inTable('bikes');
+      table.string('rearDistance').defaultTo(0);
+      table.string('name');
       table.string('Brakeset').defaultTo('unspecified');
       table.integer('brakeDistance').defaultTo(0);
       table.string('brake_pads').defaultTo('unspecified');
@@ -61,9 +59,6 @@ exports.up = function(knex, Promise) {
       table.integer('headsetDistance').defaultTo(0);
       table.string('Cables').defaultTo('unspecified');
       table.integer('cableDistance').defaultTo(0);
-    }),
-    knex.schema.createTable('wheels', table => {
-      table.string('bID').references('bID').inTable('bikes');
       table.string('Hubs').defaultTo('unspecified');
       table.integer('hubDistance').defaultTo(0);
       table.string('Rims').defaultTo('unspecified');
@@ -77,9 +72,11 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('frame_fork');
-  return knex.schema.dropTable('components');
-  return knex.schema.dropTable('wheels');
-  return knex.schema.dropTable('bikes');
-  return knex.schema.dropTable('athletes');
+  return Promise.all([
+     knex.schema.dropTable('frame_fork'),
+     knex.schema.dropTable('components'),
+     knex.schema.dropTable('wheels'),
+     knex.schema.dropTable('bikes'),
+     knex.schema.dropTable('athletes')
+  ])
 };

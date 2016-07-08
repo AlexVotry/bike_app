@@ -34,12 +34,19 @@ passport.use(new StravaStrategy({
     models.newId('athletes', profile.id).then(newId => {
       if(newId) {
         models.newAthlete(profile).then(newUser =>  {
-          models.newBike(profile).then();
-          return done(null, newUser);
+          models.newBike(profile).then(()=> {
+            models.newParts(profile).then(()=> {
+              return done(null, newUser);
+            });
+          });
+        }).catch((error)=>{
+          console.log(error);
+          return done(error);
         });
       } else {
-        models.existingBike(profile).then();
-        return done(null, profile);
+        models.existingBike(profile).then(()=> {
+          return done(null, profile);
+        });
       }
     });
   }));

@@ -7,25 +7,35 @@ module.exports = {
   athletes: function athletes() {
     return knex('athletes');
   },
-  frame_fork: function frame_fork() {
-    return knex('frame_fork');
-  },
+  // frame_fork: function frame_fork() {
+  //   return knex('frame_fork');
+  // },
   components: function components() {
     return knex('components');
   },
-  wheels: function wheels() {
-    return knex('wheels');
-  },
+  // wheels: function wheels() {
+  //   return knex('wheels');
+  // },
   dudeAndBike: function dudeAndBike() {
     return knex('athletes')
     .join('bikes', {'bikes.ID': 'athletes.ID'});
   },
   allParts: function allParts(bikeId) {
     return knex('components').where({ 'components.bID' : bikeId })
-    .join('frame_fork', { 'frame_fork.bID': 'components.bID' })
-    .join('wheels', { 'wheels.bID': 'frame_fork.bID' })
-    .join('wear_limits', { 'wear_limits.bike_id': 'wheels.bID' });
+    .join('wear_limits', { 'wear_limits.bike_id': 'components.bID' });
   },
+
+  milesToGo: function milesToGo(info) {
+    var miles = info.reset;
+    var colName = info.columnName;
+    var bikeId = info.bikeId;
+    var newData = {};
+    newData[colName] = miles;
+
+    return knex('components').where({ 'components.bID' : bikeId })
+    .update(newData)
+  },
+
   newId: function newId(table, id) {
     return knex(table).where({ ID: id })
     .first()
@@ -50,17 +60,38 @@ module.exports = {
 
   newBike: function newBike(profile) {
     const newBikes = profile._json.bikes;
-    for (var i = 0; i < newBikes.length; i++) {
+    console.log('newBike', newBikes.length);
+    return Promise.all(
+    newBikes.map(function(bike) {
       return knex('bikes').insert({
-        bID: newBikes[i].id,
-        ID: newID,
-        name: newBikes[i].name,
-        distance: newBikes[i].distance,
+        bID: bike.id,
+        ID: profile.id,
+        name: bike.name,
+        distance: bike.distance,
         manu: "unspecified",
         year: "unspecified",
         model: "unspecified"
       })
-    };
+    }));
+  },
+  newParts: function newParts(profile) {
+    const newBikes = profile._json.bikes;
+    return Promise.all(
+      newBikes.map(function(bike) {
+        for (var i = 0; i < newBikes.length; i++) {
+          return Promise.all ([
+            knex('components').insert({
+              bID: bike.id,
+              distance: bike.distance,
+              name: bike.name
+            }),
+            knex('wear_limits').insert({
+              bike_id: bike.id
+            })
+          ]);
+        }
+      })
+    )
   },
 
   existingBike: function existingBike(profile) {

@@ -17,6 +17,7 @@
           var stravaData = result.data;
           all.user = `${stravaData[0].firstname} ${stravaData[0].lastname}`;
           all.pic = stravaData[0].picture;
+          all.bicycles = [];
           for (var i = 0; i < stravaData.length; i++) {
             all.bicycles.push({
               bID : stravaData[i].bID,
