@@ -11,3 +11,27 @@ a {
 .description {
   color: blue;
 }
+
+.columnTitles {
+  margin-bottom: 35px;
+  padding-bottom: 0;
+}
+.replacedButton {
+  margin-left: 20;
+}
+.rowMaker {
+  margin-bottom: 20px;
+}
+.rowStarter {
+  margin-top: 50px;
+}
+.oddOne {
+  margin-top: 20px;
+}
+.tip {
+  font-size: 10px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}

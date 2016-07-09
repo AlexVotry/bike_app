@@ -8,24 +8,29 @@
   function PartsController(Parts, $location, $stateParams) {
     let vm = this;
     let bikeId = $stateParams.bID;
-    vm.partsDisplay = Parts.printOut();
-    console.log(bikeId);
+    vm.tester = [];
+    // vm.code = event.which ===13 || event.keyCode === 13;
     Parts.partsData(bikeId).then(partInfo => {
-        vm.theseParts = partInfo.comps;
-        vm.used = partInfo.used;
-        vm.togo = partInfo.toGo;
+        vm.theseParts = partInfo;
     });
 
-    vm.mileageReset = function(miles, index) {
-      Parts.resetPartsMileage(miles, index);
-      // vm.used =
-      });
-    }
+    vm.mileageAdjust = function(miles, name) {
+      Parts.resetPartsMileage(miles, name);
+    };
+
+    vm.mileageReset = function(miles, name) {
+      Parts.resetPartsMileage(miles, name);
+      location.reload();
+    };
+
+    vm.limitReset = function(miles, name) {
+      Parts.limitAdjust(miles, name);
+    };
 
     vm.editParts = function() {
       let allParts = vm.theseParts;
       Parts.editParts(allParts);
+      location.reload();
     }
-
   };
 })();

@@ -26,6 +26,7 @@ module.exports = {
   },
 
   milesToGo: function milesToGo(info) {
+    console.log('info: ', info);
     var miles = info.reset;
     var colName = info.columnName;
     var bikeId = info.bikeId;
@@ -33,6 +34,17 @@ module.exports = {
     newData[colName] = miles;
 
     return knex('components').where({ 'components.bID' : bikeId })
+    .update(newData)
+  },
+
+  limitAdjust: function limitAdjust(info) {
+    var miles = info.limitMiles;
+    var colName = info.columnName;
+    var bikeId = info.bikeId;
+    var newData = {};
+    newData[colName] = miles;
+
+    return knex('wear_limits').where({ 'wear_limits.bike_id' : bikeId })
     .update(newData)
   },
 

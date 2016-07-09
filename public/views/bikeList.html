@@ -9,7 +9,7 @@
   <h1>Welcome {{ home.user.user }} !</h1>
   <img ng-src="{{ home.user.pic }}" alt="profile picture" />
   <h3>List of bikes: </h3>
-  <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in home.user.bicycles | orderBy: bicycle.distance">
+  <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in home.user.bicycles | orderBy: home.user.bicycles.distance">
     <li>
         <button class="btn btn-success col-sm-4" type="button" name="edit"  ui-sref="bikeForm({bID: bicycle.bID})"> Edit Bike </button>
       <a class="col-sm-3" ui-sref="partsForm({bID: bicycle.bID})">{{ bicycle.name }}</a>
@@ -20,4 +20,3 @@
 {{ home.thisID }}
   <div ui-view></div>
 </div>
-<button class="btn btn-warning pull-right" type="button" name="button" >Parts</button>

@@ -1,218 +1,56 @@
 <form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
   <h2>Parts List for {{ parts.theseParts.name }}:</h2>
     <p> to change any information click on it </p>
-  <div class="row col-sm-12">
-    <h3 class="col-sm-3">Components</h3>
-    <h3 class="col-sm-2">Installed</h3>
-    <h3 class="col-sm-2">Used Miles</h3>
-    <h3 class="col-sm-3">Miles until replacement</h3>
-  </div>
+    <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
+    <button type="submit" class="btn btn-primary col-sm-3" >Submit changes</button>
 
-  <div class="row col-sm-12">
-    <h3 class="col-sm-2">Parts: <h3>  <button type="submit" class="btn btn-primary btn-xs" name="addIt">Update Parts!</button>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2 description" ng-click="partsbrakesForm = !partsbrakesForm">Brakeset: </h4>
-    <h4 class="col-sm-3" ng-click="partsbrakesForm = !partsbrakesForm"> {{ parts.theseParts.Brakeset }}</h4>
-    <h4 class="col-sm-2" ng-click="partsused2= !partsused2">pads: {{ parts.used[2] }}</h4>
-    <button type="submit" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" name="addIt" ng-click="parts.mileageReset(0, 2)">replaced!</button>
-    <h4 class="col-sm-2">pads: {{ parts.togo[2] - parts.used[2] }}</h4>
-  </div>
-  <div class="row col-sm-12">
-    <div class="col-sm-4" ng-show="partsbrakesForm">
-      <input type="text" ng-model="parts.theseParts.Brakeset" ></div>
-    <div class="col-sm-2" ng-show="partsused2">
-      <input type="number" ng-model="parts.used[2]" ng-change="parts.mileageReset(parts.used[2], 2)">
+<div class="row col-sm-11">
+   <h3 class="col-sm-3">Components</h3>
+   <h3 class="col-sm-2">Installed</h3>
+   <h3 class="col-sm-2">Used Miles</h3>
+   <h3 class="col-sm-3">Miles until replacement</h3>
+   <div class="col-sm-2">
+     <h3 data-toggle="collapse" data-target="#buttonDirections">Button Directions..</h3>
+       <div id="buttonDirections" class="collapse" >
+         click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
+       </div>
     </div>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2 description" ng-click="partsleverForm = !partsleverForm">Shift Levers:</h4>
-    <h4 class="col-sm-3"> {{ parts.theseParts.ShiftLevers }}</h4>
-    <h4 class="col-sm-2">levers: {{ parts.used[3] }}</h4>
-    <button type="submit" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" name="addIt">replaced!</button>
-    <h4 class="col-sm-2">levers: {{ parts.togo[3] }} </h4>
-  </div>
-  <div class="row col-sm-12">
-    <div class="col-sm-4" ng-show="partsleverForm"><input type="text" ng-model="parts.theseParts.ShiftLevers" ></div>
-    <div class="col-sm-2" ng-show="partsused3"><input type="number" ng-model="parts.used[3]"></div>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2 description" ng-click="partsfrontForm = !partsfrontForm">Front Derailleur:</h4>
-        <div ng-show="partsfrontForm"><input type="text" ng-model="parts.theseParts.FrontDerailleur" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.FrontDerailleur }}</h4>
-      <h4 class="col-sm-2">F.D.: {{ parts.used[4] }}</h4>
-      <h4 class="col-sm-2">F.D.: {{ parts.togo[4] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2 description" ng-click="partsrearForm = !partsrearForm">Rear Derailleur:</h4>
-        <div ng-show="partsrearForm"><input type="text" ng-model="parts.theseParts.RearDerailleur" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.RearDerailleur }}</h4>
-      <h4 class="col-sm-2">R.D.: {{ parts.used[5] }}</h4>
-      <h4 class="col-sm-2">R.D.: {{ parts.togo[5] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsCranksetForm = !partsCranksetForm">Crankset:</h4>
-        <div ng-show="partsCranksetForm"><input type="text" ng-model="parts.theseParts.Crankset" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Crankset }}</h4>
-      <h4 class="col-sm-2">chainrings: {{ parts.used[6] }}</h4>
-      <h4 class="col-sm-2">chainrings: {{ parts.togo[6] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsPedalsForm = !partsPedalsForm">Pedals:</h4>
-        <div ng-show="partsPedalsForm"><input type="text" ng-model="parts.theseParts.Pedals" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Pedals }}</h4>
-      <h4 class="col-sm-2">pedals: {{ parts.used[7] }}</h4>
-      <h4 class="col-sm-2">pedals: {{ parts.togo[7] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="bicycleBottomBracketForm = !bicycleBottomBracketForm">Bottom Bracket:</h4>
-        <div ng-show="bicycleBottomBracketForm"><input type="text" ng-model="parts.theseParts.BottomBracket" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.BottomBracket }}</h4>
-      <h4 class="col-sm-2">B.B.: {{ parts.used[8] }}</h4>
-      <h4 class="col-sm-2">B.B.: {{ parts.togo[8] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="bicycleBBShellWidthForm = !bicycleBBShellWidthForm">BB Shell Width:</h4>
-        <div ng-show="bicycleBBShellWidthForm"><input type="text" ng-model="parts.theseParts.BBShellWidth" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.BBShellWidth }}</h4>
-    <h4 class="col-sm-2">N/A</h4>
-    <h4 class="col-sm-2">N/A </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsRearCogsForm = !partsRearCogsForm">Rear Cogs:</h4>
-        <div ng-show="partsRearCogsForm"><input type="text" ng-model="parts.theseParts.RearCogs" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.RearCogs }}</h4>
-      <h4 class="col-sm-2">cassette: {{ parts.used[9] }}</h4>
-      <h4 class="col-sm-2">cassette: {{ parts.togo[9] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsChainForm = !partsChainForm">Chain:</h4>
-        <div ng-show="partsChainForm"><input type="text" ng-model="parts.theseParts.Chain" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Chain }}</h4>
-      <h4 class="col-sm-2">chain: {{ parts.used[10] }}</h4>
-      <h4 class="col-sm-2">chain: {{ parts.togo[10] }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsSeatpostForm = !partsSeatpostForm">Seatpost: </h4>
-        <div ng-show="partsSeatpostForm"><input type="text" ng-model="parts.theseParts.Seatpost" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Seatpost }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsSaddleForm = !partsSaddleForm">Saddle:</h4>
-        <div ng-show="partsSaddleForm"><input type="text" ng-model="parts.theseParts.Saddle" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Saddle }}</h4>
-      <h4 class="col-sm-2">saddle: {{ parts.used[11] }}</h4>
-      <h4 class="col-sm-2">saddle: {{ parts.togo[11] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsHandlebarForm = !partsHandlebarForm">Handlebar:</h4>
-        <div ng-show="partsHandlebarForm"><input type="text" ng-model="parts.theseParts.Handlebar" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Handlebar }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-      <h4 class="col-sm-2" class="col-sm-2" ng-click="partsHandlebarExtensionsForm = !partsHandlebarExtensionsForm">Handlebar Extensions:</h4>
-        <div ng-show="partsHandlebarExtensionsForm"><input type="text" ng-model="parts.theseParts.HandlebarExtensions" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.HandlebarExtensions }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsHandlebarStemForm = !partsHandlebarStemForm">Handlebar Stem:</h4>
-        <div ng-show="partsHandlebarStemForm"><input type="text" ng-model="parts.theseParts.HandlebarStem" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.HandlebarStem }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4  class="col-sm-2" ng-click="partsHeadsetForm = !partsHeadsetForm">Headset:</h4>
-        <div ng-show="partsHeadsetForm"><input type="text" ng-model="parts.theseParts.Headset" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.Headset }}</h4>
-      <h4 class="col-sm-2">headset: {{ parts.used[12] }}</h4>
-      <h4 class="col-sm-2">headset: {{ parts.togo[12] }} </h4>
-  </div>
-</form>
-
-<form name="thisFrame" class="form-group" ng-submit="parts.editFork(parts.theseParts)">
-  <div class="row col-sm-12">
-    <h3 class="col-sm-2">Frame and Fork: <h3>  <button type="submit" class="btn btn-primary btn-xs" name="addIt">Update Frame and Fork!</button>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4  class="col-sm-2" ng-click="partstubingForm = !partstubingForm">Tubing: </h4>
-        <div ng-show="partstubingForm"><input type="text" ng-model="parts.theseParts.tubing" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.tubing }}</h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsforkForm = !partsforkForm">Fork: </h4>
-        <div ng-show="partsforkForm"><input type="text" ng-model="parts.theseParts.fork" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.fork }}</h4>
-      <h4 class="col-sm-2">pads: {{ parts.used[0] }}</h4>
-      <h4 class="col-sm-2">pads: {{ parts.togo[0] }} </h4>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2" ng-click="partsrearShock = !partsrearShock">Rear Shock: </h4>
-        <div ng-show="partsrearShock"><input type="text" ng-model="parts.thesePartsrearShock" ></div>
-      <h4 class="col-sm-3"> {{ parts.theseParts.rearShock }}</h4>
-      <h4 class="col-sm-2">seals: {{ parts.used[0] }}</h4>
-      <h4 class="col-sm-2">seals: {{ parts.togo[0] }} </h4>
-  </div>
-</form>
-<form name="thisWheel" class="form-group" ng-submit="parts.editWheels(parts.theseParts)">
-
-  <div class="row col-sm-12">
-    <h3 class="col-sm-2">Wheels: <h3>  <button type="submit" class="btn btn-primary btn-xs" name="addIt">Update Wheels!</button>
-  </div
-
-<div class="row col-sm-12">
-  <h4 class="col-sm-2" ng-click="partsHubsForm = !partsHubsForm">Hubs:</h4>
-      <div ng-show="partsHubsForm"><input type="text" ng-model="parts.theseParts.Hubs" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.Hubs }}</h4>
-    <h4 class="col-sm-2">hubs: {{ parts.used[14] }}</h4>
-    <h4 class="col-sm-2">hubs: {{ parts.togo[14] }} </h4>
+ </div>
+ <div class="col-sm-5 col-sm-">
+   <p> click on a component to update brand and model</p>
 </div>
 
-<div class="row col-sm-12">
-  <h4 class="col-sm-2" ng-click="partsRimsForm = !partsRimsForm">Rims:</h4>
-      <div ng-show="partsRimsForm"><input type="text" ng-model="parts.theseParts.Rims" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.Rims }}</h4>
-    <h4 class="col-sm-2">rims: {{ parts.used[15] }}</h4>
-    <h4 class="col-sm-2">rims: {{ parts.togo[15] }} </h4>
-</div>
+  <div class="row col-sm-11">
+    <div ng-repeat="item in parts.theseParts | orderBy: 'maxMiles'">
+      <h4 class="col-sm-3 description" ng-click="descForm = !descForm">{{item.desc}}</h4>
 
-<div class="row col-sm-12">
-  <h4 class="col-sm-2" ng-click="partsTiresForm = !partsTiresForm">Tires:</h4>
-      <div ng-show="partsTiresForm"><input type="text" ng-model="parts.theseParts.Tires" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.Tires }}</h4>
-    <h4 class="col-sm-2">tires: {{ parts.used[16] }}</h4>
-    <h4 class="col-sm-2">tires: {{ parts.togo[16] }} </h4>
-</div>
+      <h4 class="col-sm-2" ng-click="descForm = !descForm">{{item.installed}}</h4>
 
-<div class="row col-sm-12">
-  <h4 class="col-sm-2" ng-click="partsSpokesForm = !partsSpokesForm">Spokes:</h4>
-      <div ng-show="partsSpokesForm"><input type="text" ng-model="parts.theseParts.Spokes" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.Spokes }}</h4>
-</div>
+      <h4 class="col-sm-2">{{item.used}}</h4>
 
-<div class="row col-sm-12">
-  <h4 class="col-sm-2" ng-click="partsSpokeNipplesForm = !partsSpokeNipplesForm">Spoke Nipples:</h4>
-      <div ng-show="partsSpokeNipplesForm"><input type="text" ng-model="parts.theseParts.SpokeNipples" ></div>
-    <h4 class="col-sm-3"> {{ parts.theseParts.SpokeNipples }}</h4>
-</div>
+      <h4 class="col-sm-3" ng-click="replaced= !replaced">{{item.maxMiles - item.used}} </h4>
 
-  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
+        <div class="btn-group col-sm-2 ">
+          <button type="button" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" ng-click="parts.mileageReset(0, item.partDistName)">replace!</button>
+          <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="tip"> enter how many miles you've ridden with this part:</li>
+                <li> <input type="number" ng-model="item.used" ng-change="parts.mileageAdjust(item.used, item.partDistName)" autofocus> </li>
+              <li class="tip"> enter the distance between changes you want:</li>
+                <li> <input type="number" ng-model="item.maxMiles"  ng-change="parts.limitReset(item.maxMiles, item.maxName)" autofocus> </li>
+              <li><button type="submit" class="btn btn-primary btn-xs" data-toggle="dropdown">change it</button>
+              </ul>
+            </div>
+
+        <div class="row col-sm-12">
+          <div class="col-sm-4" ng-show="descForm">
+            <input type="text" ng-model="item.installed" autofocus></div>
+          </div>
+      </div>
+    </div>
+
+
 
 </form>
