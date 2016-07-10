@@ -23,7 +23,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  console.log(req.params.id);
   models.allParts(req.params.id).select().then(partsInfo => {
     res.json(partsInfo);
   }).catch(function (error) {
@@ -55,56 +54,62 @@ router.put('/mileage', (req, res, next) => {
   });
 });
 
-router.put('/parts', (req, res, next) => {
+router.put('/limit', (req, res, next) => {
+  var info = req.body;
+  console.log(info);
+  models.limitAdjust(info).then(
+    res.json()
+  )
+  .catch(function (error) {
+    console.log(error);
+  });
+});
+
+
+router.put('/parts/:id', (req, res, next) => {
   var parts = req.body;
-  models.components().where({ bID: parts.bID }).update({
-    Brakeset:	parts.Brakeset,
-    ShiftLevers: parts.ShiftLevers,
-    FrontDerailleur:	parts.FrontDerailleur,
-    RearDerailleur:	parts.RearDerailleur,
-    Crankset:	parts.Crankset,
-    Pedals:	parts.Pedals,
-    BottomBracket:	parts.BottomBracket,
-    BBShellWidth:	parts.BBShellWidth,
-    RearCogs: parts.RearCogs,
-    Chain: parts.Chain,
-    Seatpost:	parts.Seatpost,
-    Saddle:	parts.Saddle,
-    Handlebar: parts.Handlebar,
-    HandlebarExtensions: parts.HandlebarExtensions,
-    HandlebarStem:	parts.HandlebarStem,
-    Headset:	parts.Headset,
-    Cables: parts.Cables,
-    brakeDistance: parts.brakeDistance,
-    leverDistance: parts.leverDistance,
-    fdDistance: parts.fdDistance,
-    rdDistance: parts.rdDistance,
-    cranksetDistance: parts.cranksetDistance,
-    pedalDistance: parts.pedalDistance,
-    bbDistance: parts.bbDistance,
-    cogDistance: parts.cogDistance,
-    chainDistance: parts.chainDistance,
-    saddleDistance: parts.saddleDistance,
-    headsetDistance: parts.headsetDistance,
-    cableDistance: parts.cableDistance,
-    paddistance: parts.paddistance,
-    tubing: parts.tubing,
-    fork: parts.fork,
-    forkDistance: parts.forkDistance,
-    rearShock: parts.rearShock,
-    rearDistance: parts.rearDistance,
-    Hubs:	parts.Hubs,
-    hubDistance: parts.hubDistance,
-    Rims:	parts.Rims,
-    rimDistance: parts.rimDistance,
-    Tires: parts.Tires,
-    tireDistance: parts.tireDistance,
-    Spokes:	parts.Spokes,
-    SpokeNipples: parts.SpokeNipples
+  var bikeId = req.params.id;
+  models.components().where({ bID: bikeId }).update({
+    Brakeset:	parts[0].installed,
+    ShiftLevers: parts[1].installed,
+    FrontDerailleur:	parts[2].installed,
+    RearDerailleur:	parts[3].installed,
+    Crankset:	parts[4].installed,
+    Pedals:	parts[5].installed,
+    BottomBracket:	parts[6].installed,
+    BBShellWidth:	parts[7].installed,
+    RearCogs: parts[8].installed,
+    Chain: parts[9].installed,
+    Seatpost:	parts[10].installed,
+    Saddle:	parts[11].installed,
+    Handlebar: parts[12].installed,
+    HandlebarStem:	parts[13].installed,
+    Headset:	parts[14].installed,
+    tubing: parts[15].installed,
+    Cables: parts[16].installed,
+    fork: parts[17].installed,
+    rearShock: parts[18].installed,
+    Hubs:	parts[19].installed,
+    Rims:	parts[20].installed,
+    Tires: parts[21].installed,
+    Spokes:	parts[22].installed,
+    SpokeNipples: parts[23].installed,
   }).then()
   .catch(function (error) {
     console.log(error);
   });
-})
+});
+
+router.delete('/parts/:id', (req, res, next) => {
+  var info = req.body;
+  var bikeId = req.params.id;
+  models.deleteComp(info)
+  .then(
+    res.json()
+  )
+  .catch(function (error) {
+    console.log(error);
+  });
+});
 
 module.exports = router;

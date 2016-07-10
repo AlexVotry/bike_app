@@ -10,5 +10,8 @@
     Stats.user().then(stravaData => {
       vm.user = stravaData;
     });
+    vm.logout = function() {
+      Stats.logout();
+    };
   };
 })();

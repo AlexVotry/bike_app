@@ -36,6 +36,8 @@
       .state('logout', {
         url: '/logout',
         templateUrl: 'views/logout.html',
+        controllerAs: 'logout',
+        controller: "LogoutController"
       })
     };
 

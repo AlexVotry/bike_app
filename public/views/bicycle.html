@@ -1,5 +1,15 @@
-<form name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
+<nav class="navbar navbar-inverse" role="navigation">
+  <ul class="nav navbar-nav">
+    <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
+      <li><a ui-sref="logout">logout</a></li>
+      <li><a ng-click="home.logout()" ui-sref="bikeList">Bike List</a></li>
+  </ul>
+</nav>
+<main class="bikes">
+  <section class="wrapper" >
+    <form  id="formBorder" name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
 
+<<<<<<< HEAD
   <h2>Bike Description: </h2>
   <h3> {{ bicycle.thisBike.name }}</h3>
 <div ng-repeat="sample in bicycle.thisBike">
@@ -7,17 +17,38 @@
 </div>
   <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
       <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
+=======
+      <h1 class="partTitle"> {{ bicycle.thisBike.name }}</h1>
+      <h3>Bike Details: </h3>
+      <span>
+        <img id="froggy" src="https://cdn1.vox-cdn.com/thumbor/RTpzAptGjAklTw6TxobdzIAq6Vc=/cdn0.vox-cdn.com/uploads/chorus_asset/file/3277216/bike.0.gif">
+      </span>
 
-  <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  {{ bicycle.thisBike.manu }}</h4>
-      <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.thisBike.manu" ></span>
+      <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name: <span class="bikeName"> {{ bicycle.thisBike.name }}</span></h4>
+          <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
+>>>>>>> 998feaac58c027e563df52c52536fd70ee3d1363
 
-  <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  {{ bicycle.thisBike.year }}</h4>
-      <span ng-show="bicycle.yearForm"><input type="text" ng-model="bicycle.thisBike.year" ></span>
+      <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  <span class="bikeName"> {{ bicycle.thisBike.manu }}</span></h4>
+          <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.thisBike.manu" autofocus></span>
 
-  <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  {{ bicycle.thisBike.model }}</h4>
-      <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" ></span><br>
+      <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  <span class="bikeName"> {{ bicycle.thisBike.year }}</span></h4>
+          <span ng-show="bicycle.yearForm"><input type="text" ng-model="bicycle.thisBike.year" autofocus></span>
 
+      <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  <span class="bikeName"> {{ bicycle.thisBike.model }}</span></h4>
+          <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" autofocus></span><br>
+
+<<<<<<< HEAD
   <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
   <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
 
 </form>
+=======
+
+      <footer class="modal-footer">
+        <button type="submit" class="btn btn-success col-sm-3" ui-sref="bikeList" name="addIt">Update!</button>
+        <button type="button" class="btn btn-danger" ui-sref="bikeList">Close</button>
+      </footer>
+    </section>
+  </div>
+</main>
+>>>>>>> 998feaac58c027e563df52c52536fd70ee3d1363

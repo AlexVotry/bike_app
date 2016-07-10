@@ -1,23 +1,30 @@
 <nav class="navbar navbar-inverse" role="navigation">
   <ul class="nav navbar-nav">
     <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
-      <li><a ui-sref="login">login</a></li>
-      <li><a ui-sref="bikeList">Bikes</a></li>
+      <li><a ui-sref="logout">logout</a></li>
+      <li><a ng-click="home.logout()" ui-sref="bikeList">Bike List</a></li>
   </ul>
 </nav>
-<div class="container">
-  <h1>Welcome {{ home.user.user }} !</h1>
-  <img ng-src="{{ home.user.pic }}" alt="profile picture" />
-  <h3>List of bikes: </h3>
-  <ul style="list-style: none;" class="rows col-sm-12" ng-repeat="bicycle in home.user.bicycles | orderBy: bicycle.distance">
-    <li>
-        <button class="btn btn-success col-sm-4" type="button" name="edit"  ui-sref="bikeForm({bID: bicycle.bID})"> Edit Bike </button>
-      <a class="col-sm-3" ui-sref="partsForm({bID: bicycle.bID})">{{ bicycle.name }}</a>
-      <span class="col-sm-6"> {{ bicycle.distance *  0.00062137 | number: 2 }} miles</span>
-       <input type="hidden" class="col-sm-3" ng-model="home.user.bicycle.bID" /> <br>
-    </li>
-  </ul>
-{{ home.thisID }}
-  <div ui-view></div>
-</div>
-<button class="btn btn-warning pull-right" type="button" name="button" >Parts</button>
+<main class="container" id="bikeListBackground">
+  <header class="col-sm-12">
+    <img class="col-sm-2" id="pic" ng-src="{{ home.user.pic }}" alt="profile picture" />
+    <h1 class="col-sm-9" id="welcome">Welcome {{ home.user.user }} !</h1>
+  </header>
+  <h3 class="listOBikes">List of bikes: </h3>
+  <article ng-repeat="bicycle in home.user.bicycles | orderBy: '-distance'">
+    <ul style="list-style: none;" class="rows col-sm-7 well bikeDisplay" >
+      <li>
+          <button class="btn btn-success col-sm-3" type="button" name="edit" ui-sref="partsForm({bID: bicycle.bID})">Check Parts </button>
+
+          <a class="col-sm-5"  ui-sref="bikeForm({bID: bicycle.bID})" ><h4 class="bikeName">{{ bicycle.name }}</h4></a>
+
+          <div class="col-sm-4">  <h4 class="bikeDistance"> {{ bicycle.distance *  0.00062137 | number: 2 }} miles</h4></div>
+
+         <input type="hidden" class="col-sm-3" ng-model="home.user.bicycle.bID" />
+      </li>
+    </ul>
+
+
+</article>
+
+</main>

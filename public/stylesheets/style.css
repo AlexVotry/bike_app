@@ -1,13 +1,226 @@
+@font-face {
+    font-family: 'digital-7';
+    src: url('digital-7(mono).ttf');
+}
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: gold;
+  margin: 0;
+  /*background-color:	#F5F5DC;*/
+  padding: -300;
+}
+.btn.btn-warning {
+  color: #000;
+}
+.well {
+  opacity: .8;
+  box-shadow: 2px 2px 2px 	#00FFFF;
+}
+.bikeName {
+  text-align: center;
+  font-family: 'Bangers', cursive;
+}
+.bikeDisplay {
+  background-color: #4B0082;
 }
 
+/*login & logout*/
+.loginBackground {
+  background-image: url('../images/sky.jpg');
+  height: 1000px;
+}
+#zen {
+  margin-left: 100px;
+  margin-top: 150px;
+}
+.stravaButton {
+  margin-left: 400px;
+  margin-top: 50px;
+  height: 60px;
+  border: 10px groove gold;
+}
+
+/*bikelist*/
+#bikeListBackground {
+  background-image: url('../images/Vol2015_3.jpg');
+  height: 1000px;
+}
+.bikeDistance {
+  background-color: #4B0082;
+  text-shadow: 3px 3px 3px #000;
+  text-align: right;
+  color: 	#FFD700;
+  font-size: 1.5em;
+  font-weight: bold;
+  /*font-family: 'digital-7';*/
+}
 a {
   color: #00B7FF;
+  font-family: 'Bangers', cursive;
+}
+a:hover {
+  color: 		#FFD700;
+}
+.listOBikes {
+  color: 	#A52A2A;
+  font-size: 3em;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-top: 170px;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px 2px 		#F8F8FF;
+}
+#welcome {
+  font-family: 'Bangers', cursive;
+  font-size: 5em;
+  -webkit-text-fill-color: 	#4B0082;; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: 	#00FFFF;
+}
+#pic {
+  margin-top: 30px;
+  /*box-shadow: 2px 2px 2px 	#00FFFF;*/
+  border-radius: 15%;
+  border: 2px groove #00FFFF;
+}
+/*bike from*/
+.bikes {
+  background-image: url('http://www.markelinsurance.com/bicycle/~/media/specialty/bicycle/bicycle_insurance-options-575x250.jpg?width=100%');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.wrapper {
+  margin-top: -100px;
+  padding: 100px;
+}
+.thisBikeForm {
+  color: 	#A52A2A;
+  font-size: 3em;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-top: 170px;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px 2px 		#F8F8FF;
+}
+#formBorder {
+  margin: 10% 30%;
+  color: 	#A52A2A;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px 2px 		#F8F8FF;
+  padding: 30px;
+  border-radius: 15%;
+  background-color:	#B0E0E6;
+    position: relative;
+    -webkit-animation-name: bikeForm;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-name: bikeForm;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
+@-webkit-keyframes bikeForm {
+    0%   {border: 8px groove 	#00FF00;}
+    25%  {border: 8px groove #FAF0E6;}
+    50%  {border: 8px groove gold;}
+    75%  {border: 8px groove #FFEFD5;}
+    100% {border: 8px groove 	#DA70D6;}
+}
+@keyframes bikeForm {
+    0%   {border: 8px groove 	#00FF00;}
+    25%  {border: 8px groove #FAF0E6;}
+    50%  {border: 8px groove gold;}
+    75%  {border: 8px groove #FFEFD5;}
+    100% {border: 8px groove 	#DA70D6;}
+}
+#froggy {
+  width: 30%;
+  float: right;
+}
+
+/*parts from*/
+#partsBackground {
+  background-image: url('https://cdn.shopify.com/s/files/1/1060/5510/collections/Bike_Parts-618x382.jpg?v=1449854369');
+  background-size: cover;
+  color: #fff;
+}
+input {
+  color: black;
+}
+.partTitle {
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  color: #4B0082;
+}
+.partForm {
+  margin-left: 60px;
+  background-color: #4B0082;
+}
+.great {
+  color: 		#00FF7F;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
+}
+.near {
+  color: 	#FFD700;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
+}
+.past {
+ color: 	#ff0000;
+ font-weight: bold;
+ text-shadow: 1px 1px 1px #000;
+}
+.gif {
+  height: 50px;
+  position: relative;
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-direction: alternate;
+  animation-name: rider;
+  animation-duration: 8s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
+@-webkit-keyframes rider {
+    0%   {left:0px; top:0px;}
+    100% {left:1000px; top:0px;}
+}
+@keyframes rider {
+    0%   {left:0px; top:0px;}
+    100% {left:1000px; top:0px;}
+}
 .description {
-  color: blue;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+.columnTitles {
+  margin-bottom: 35px;
+  padding-bottom: 0;
+}
+
+.replacedButton {
+  margin-left: 20;
+}
+
+.rowMaker {
+  margin-bottom: 20px;
+}
+
+.rowStarter {
+  margin-top: 50px;
+}
+
+.oddOne {
+  margin-top: 20px;
+}
+
+.tip {
+  font-size: 10px;
 }
