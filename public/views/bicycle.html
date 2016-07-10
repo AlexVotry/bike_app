@@ -1,7 +1,9 @@
-<form name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
 
-  <h2>Bike Description: </h2>
-  <h3> {{ bicycle.thisBike.name }}</h3>
+
+<form id="thisBikeForm" name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
+
+  <h2> {{ bicycle.thisBike.name }}</h2>
+  <h3>Bike Details: </h3>
 
   <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
       <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
@@ -15,7 +17,47 @@
   <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  {{ bicycle.thisBike.model }}</h4>
       <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" ></span><br>
 
-  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
-  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
-  
+
+  <footer class="modal-footer">
+    <button type="submit" class="btn btn-success col-sm-3" name="addIt">Update!</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </footer>
 </form>
+
+<!-- <div id="indivBike" class="modal fade" role="document">
+  <div class="modal-dialog">
+
+    <section class="modal-content">
+      <header class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">{{ bicycle.name }}</h2>
+      </header>
+
+      <article class="modal-body" >
+        <form name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
+          <h3>Bike Details: </h3>
+
+          <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.name }}</h4>
+              <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.name" autofocus ></span>
+
+          <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  {{ bicycle.manu }}</h4>
+              <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.manu" ></span>
+
+          <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  {{ bicycle.year }}</h4>
+              <span ng-show="bicycle.yearForm"><input type="text" ng-model="bicycle.year" ></span>
+
+          <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  {{ bicycle.model }}</h4>
+              <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.model" ></span><br>
+
+          <button type="submit" class="btn btn-primary col-sm-3" data-dismiss="modal" name="addIt">Update!</button>
+
+        </form>
+      </article>
+
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </footer>
+
+    </section>
+  </div>
+</div> -->

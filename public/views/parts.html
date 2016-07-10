@@ -1,56 +1,57 @@
-<form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
+<header>
   <h2>Parts List for {{ parts.theseParts.name }}:</h2>
-    <p> to change any information click on it </p>
+</header>
+<Main id="partsBackground">
+  <form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
     <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
     <button type="submit" class="btn btn-primary col-sm-3" >Submit changes</button>
 
-<div class="row col-sm-11">
-   <h3 class="col-sm-3">Components</h3>
-   <h3 class="col-sm-2">Installed</h3>
-   <h3 class="col-sm-2">Used Miles</h3>
-   <h3 class="col-sm-3">Miles until replacement</h3>
-   <div class="col-sm-2">
-     <h3 data-toggle="collapse" data-target="#buttonDirections">Button Directions..</h3>
-       <div id="buttonDirections" class="collapse" >
-         click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
-       </div>
-    </div>
- </div>
- <div class="col-sm-5 col-sm-">
-   <p> click on a component to update brand and model</p>
-</div>
-
-  <div class="row col-sm-11">
-    <div ng-repeat="item in parts.theseParts | orderBy: 'maxMiles'">
-      <h4 class="col-sm-3 description" ng-click="descForm = !descForm">{{item.desc}}</h4>
-
-      <h4 class="col-sm-2" ng-click="descForm = !descForm">{{item.installed}}</h4>
-
-      <h4 class="col-sm-2">{{item.used}}</h4>
-
-      <h4 class="col-sm-3" ng-click="replaced= !replaced">{{item.maxMiles - item.used}} </h4>
-
-        <div class="btn-group col-sm-2 ">
-          <button type="button" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" ng-click="parts.mileageReset(0, item.partDistName)">replace!</button>
-          <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-          </button>
-            <ul class="dropdown-menu" role="menu">
-              <li class="tip"> enter how many miles you've ridden with this part:</li>
-                <li> <input type="number" ng-model="item.used" ng-change="parts.mileageAdjust(item.used, item.partDistName)" autofocus> </li>
-              <li class="tip"> enter the distance between changes you want:</li>
-                <li> <input type="number" ng-model="item.maxMiles"  ng-change="parts.limitReset(item.maxMiles, item.maxName)" autofocus> </li>
-              <li><button type="submit" class="btn btn-primary btn-xs" data-toggle="dropdown">change it</button>
-              </ul>
-            </div>
-
-        <div class="row col-sm-12">
-          <div class="col-sm-4" ng-show="descForm">
-            <input type="text" ng-model="item.installed" autofocus></div>
-          </div>
+  <summary class="row col-sm-11">
+     <h3 class="col-sm-3">Components</h3>
+     <h3 class="col-sm-2">Installed</h3>
+     <h3 class="col-sm-2">Used Miles</h3>
+     <h3 class="col-sm-3">Miles until replacement</h3>
+     <div class="col-sm-2">
+       <h3 data-toggle="collapse" data-target="#buttonDirections">Button Directions..</h3>
+         <div id="buttonDirections" class="collapse" >
+           click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
+         </div>
       </div>
-    </div>
+   </summary>
 
+   <div class="col-sm-5 col-sm-">
+     <p> click on a component to update brand and model</p>
+  </div>
 
+    <article class="row col-sm-11">
+      <div ng-repeat="item in parts.theseParts | orderBy: 'maxMiles'">
+        <h4 class="col-sm-3 description" ng-click="descForm = !descForm">{{item.desc}}</h4>
 
-</form>
+        <h4 class="col-sm-2" ng-click="descForm = !descForm">{{item.installed}}</h4>
+
+        <h4 class="col-sm-2">{{item.used}}</h4>
+
+        <h4 class="col-sm-3" ng-click="replaced= !replaced">{{item.maxMiles - item.used}} </h4>
+
+          <div class="btn-group col-sm-2 ">
+            <button type="button" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" ng-click="parts.mileageReset(0, item.partDistName)">replace!</button>
+            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu" role="menu">
+                <li class="tip"> enter how many miles you've ridden with this part:</li>
+                  <li> <input type="number" ng-model="item.used" ng-change="parts.mileageAdjust(item.used, item.partDistName)" autofocus> </li>
+                <li class="tip"> enter the distance between changes you want:</li>
+                  <li> <input type="number" ng-model="item.maxMiles"  ng-change="parts.limitReset(item.maxMiles, item.maxName)" autofocus> </li>
+                <li><button type="submit" class="btn btn-primary btn-xs" data-toggle="dropdown">change it</button>
+                </ul>
+              </div>
+
+          <div class="row col-sm-12">
+            <div class="col-sm-4" ng-show="descForm">
+              <input type="text" ng-model="item.installed" autofocus></div>
+            </div>
+        </div>
+      </article>
+  </form>
+</main>
