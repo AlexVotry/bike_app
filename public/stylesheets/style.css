@@ -2,41 +2,40 @@
     font-family: 'digital-7';
     src: url('digital-7(mono).ttf');
 }
-
 body {
-  padding: 0;
+  margin: 0;
+  /*background-color:	#F5F5DC;*/
+  padding: -300;
 }
-#thisBikeForm {
-  margin: 10% 25%;
-  padding: 30px;
-  border-radius: 15%;
-  background-color: #66CDAA;
-  border: 4px solid blue;
+.well {
+  opacity: .8;
+  box-shadow: 2px 2px 2px 	#00FFFF;
+}
+.bikeName {
+  text-align: center;
+  font-family: 'Bangers', cursive;
+}
+.bikeDisplay {
+  background-color: #4B0082;
 }
 
-#loginBackground {
+/*login & logout*/
+.loginBackground {
   background-image: url('../images/sky.jpg');
   height: 1000px;
 }
-
-#bikeListBackground {
-  background-image: url('../images/Vol2015_3.jpg');
-  height: 1000px;
-}
-#partsBackground {
-  background-color: green;
-}
-
-#stravaButton {
+.stravaButton {
   margin-left: 400px;
   margin-top: 200px;
   height: 50px;
   border: 4px solid blue;
 }
-.bikeName {
-  text-align: center;
-}
 
+/*bikelist*/
+#bikeListBackground {
+  background-image: url('../images/Vol2015_3.jpg');
+  height: 1000px;
+}
 .bikeDistance {
   background-color: #4B0082;
   text-shadow: 3px 3px 3px #000;
@@ -44,7 +43,7 @@ body {
   color: 	#FFD700;
   font-size: 1.5em;
   font-weight: bold;
-  font-family: 'digital-7';
+  /*font-family: 'digital-7';*/
 }
 a {
   color: #00B7FF;
@@ -52,24 +51,6 @@ a {
 }
 a:hover {
   color: 		#FFD700;
-}
-.well {
-  opacity: .8;
-  box-shadow: 2px 2px 2px 	#00FFFF;
-}
-.bikeDisplay {
-  background-color: #4B0082;
-}
-.description {
-  color: blue;
-  font-family: 'Indie Flower', cursive;
-}
-#welcome {
-  font-family: 'Bangers', cursive;
-  font-size: 5em;
-   -webkit-text-fill-color: 	#4B0082;; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 2px;
-   -webkit-text-stroke-color: 	#00FFFF;
 }
 .listOBikes {
   color: 	#A52A2A;
@@ -80,32 +61,97 @@ a:hover {
   font-family: 'Indie Flower', cursive;
   text-shadow: 2px 2px 2px 		#F8F8FF;
 }
+#welcome {
+  font-family: 'Bangers', cursive;
+  font-size: 5em;
+  -webkit-text-fill-color: 	#4B0082;; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: 	#00FFFF;
+}
 #pic {
   margin-top: 30px;
   box-shadow: 2px 2px 2px 	#00FFFF;
   border-radius: 15%;
 }
+/*bike from*/
+.bikes {
+  background-image: url('http://www.markelinsurance.com/bicycle/~/media/specialty/bicycle/bicycle_insurance-options-575x250.jpg?width=100%');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.wrapper {
+  margin-top: -100px;
+  padding: 100px;
+}
+.thisBikeForm {
+  margin: 10% 25%;
+  padding: 30px;
+  border-radius: 15%;
+  background-color: #66CDAA;
+  border: 4px solid blue;
+}
+#froggy {
+  width: 30%;
+  float: right;
+}
+
+/*parts from*/
+#partsBackground {
+  background-image: url('https://cdn.shopify.com/s/files/1/1060/5510/collections/Bike_Parts-618x382.jpg?v=1449854369');
+  background-size: cover;
+  color: #fff;
+}
+.partTitle {
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  color: #4B0082;
+}
+.partForm {
+  margin-left: 60px;
+  /*background-color:	#F5F5DC;*/
+  background-color: #4B0082;
+}
+.great {
+  color: 	#006400;
+}
+.near {
+  color: 	#FFD700;
+}
+.past {
+ color: 	#B22222
+}
+.gif {
+  height: 50px;
+  float: right;
+  margin-right: 50px;
+}
+
 
 .columnTitles {
   margin-bottom: 35px;
   padding-bottom: 0;
 }
+
 .replacedButton {
   margin-left: 20;
 }
+
 .rowMaker {
   margin-bottom: 20px;
 }
+
 .rowStarter {
   margin-top: 50px;
 }
+
 .oddOne {
   margin-top: 20px;
 }
+
 .tip {
   font-size: 10px;
 }
 
-h4 {
+/*h4 {
   margin-bottom: 10px;
-}
+}*/

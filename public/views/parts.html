@@ -1,12 +1,19 @@
-<header>
-  <h2>Parts List for {{ parts.theseParts.name }}:</h2>
-</header>
-<Main id="partsBackground">
-  <form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
-    <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
-    <button type="submit" class="btn btn-primary col-sm-3" >Submit changes</button>
+<nav class="navbar navbar-inverse" role="navigation">
+  <ul class="nav navbar-nav">
+    <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
+      <li><a ui-sref="logout">logout</a></li>
+      <li><a ui-sref="bikeList">Bike List</a></li>
+  </ul>
+  <img class="gif" src="http://2.bp.blogspot.com/-MeScVxntXRc/VPenJnCzZQI/AAAAAAAANb8/6yI6swTN5nc/s1600/04-01%2B~%2BGIF%2B~%2BSkeleton%2BOn%2BBicycle.gif">
+</nav>
 
-  <summary class="row col-sm-11">
+<main id="partsBackground" class="row col-sm-12">
+  <h2 class="partTitle">Parts List for {{ parts.theseParts.name }}:</h2>
+    <section >
+      <summary class="row col-sm-11 well partForm">
+  <form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
+
+  <div class="col-sm-12">
      <h3 class="col-sm-3">Components</h3>
      <h3 class="col-sm-2">Installed</h3>
      <h3 class="col-sm-2">Used Miles</h3>
@@ -17,16 +24,20 @@
            click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
          </div>
       </div>
+    </div>
+    <div class="col-sm-12 col-sm">
+      <p class="col-sm-5"> click on a component to update brand and model</p>
+      <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close without making changes</button>
+      <button type="submit" class="btn btn-primary col-sm-3" ui-sref="bikeList">Submit changes and close</button>
+    </div><br>
    </summary>
 
-   <div class="col-sm-5 col-sm-">
-     <p> click on a component to update brand and model</p>
-  </div>
 
-    <article class="row col-sm-11">
+    <article class="row col-sm-11 well partForm">
       <div ng-repeat="item in parts.theseParts | orderBy: 'maxMiles'">
-        <h4 class="col-sm-3 description" ng-click="descForm = !descForm">{{item.desc}}</h4>
-
+        <div class="col-sm-3 description">
+          <h4 ng-class="{great: item.toGo >= 100, past: item.toGo <= 0, near: (item.toGo < 99 && item.toGo > 0)}" ng-click="descForm = !descForm">{{item.desc}} </h4>
+        </div>
         <h4 class="col-sm-2" ng-click="descForm = !descForm">{{item.installed}}</h4>
 
         <h4 class="col-sm-2">{{item.used}}</h4>
@@ -53,5 +64,7 @@
             </div>
         </div>
       </article>
+    </section>
   </form>
+
 </main>
