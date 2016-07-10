@@ -2,7 +2,9 @@
 
   <h2>Bike Description: </h2>
   <h3> {{ bicycle.thisBike.name }}</h3>
-
+<div ng-repeat="sample in bicycle.thisBike">
+  <li>{{ sample }}
+</div>
   <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
       <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
 
@@ -17,5 +19,5 @@
 
   <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
   <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
-  
+
 </form>
