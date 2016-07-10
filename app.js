@@ -86,7 +86,6 @@ app.get('/auth/strava/callback',
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  console.log('fucked');
   res.redirect('/login')
 }
 

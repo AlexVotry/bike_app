@@ -7,15 +7,9 @@ module.exports = {
   athletes: function athletes() {
     return knex('athletes');
   },
-  // frame_fork: function frame_fork() {
-  //   return knex('frame_fork');
-  // },
   components: function components() {
     return knex('components');
   },
-  // wheels: function wheels() {
-  //   return knex('wheels');
-  // },
   dudeAndBike: function dudeAndBike() {
     return knex('athletes')
     .join('bikes', {'bikes.ID': 'athletes.ID'});
@@ -35,6 +29,19 @@ module.exports = {
 
     return knex('components').where({ 'components.bID' : bikeId })
     .update(newData)
+  },
+
+  deleteComp: function deleteComp(info) {
+    var comp = info.desc;
+    var wear = info.limitColumn;
+    var compDist = info.partDist;
+
+    return knex('components').where({ 'components.bID': bikeId })
+    .delete(comp, compDist)
+      .then(()=> {
+        return knex('wear_limits').where({ 'wear_limits.bike_id': bikeId })
+      .delete(wear)
+    });
   },
 
   limitAdjust: function limitAdjust(info) {

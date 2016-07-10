@@ -153,6 +153,12 @@
       editParts: function(allParts) {
           var bikeId = parts.comps.bID;
         $http.put(`${url}/parts/${bikeId}`, allParts);
+      },
+
+      deletePart: function(desc, max, dist) {
+        var bikeId = parts.comps.bID;
+        var info = {description: desc, limitColumn: max, partDist: dist };
+        $http.put(`${url}/parts/${bikeId}`, info);
       }
     }
   }

@@ -41,6 +41,9 @@
       editBike: function(bicycle) {
         $http.put(`${url}/`, bicycle);
       },
+      logout: function() {
+        $http:get('/logout');
+      }
     }
   }
 })();

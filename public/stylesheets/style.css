@@ -7,6 +7,9 @@ body {
   /*background-color:	#F5F5DC;*/
   padding: -300;
 }
+.btn.btn-warning {
+  color: #000;
+}
 .well {
   opacity: .8;
   box-shadow: 2px 2px 2px 	#00FFFF;
@@ -24,11 +27,15 @@ body {
   background-image: url('../images/sky.jpg');
   height: 1000px;
 }
+#zen {
+  margin-left: 100px;
+  margin-top: 150px;
+}
 .stravaButton {
   margin-left: 400px;
-  margin-top: 200px;
-  height: 50px;
-  border: 4px solid blue;
+  margin-top: 50px;
+  height: 60px;
+  border: 10px groove gold;
 }
 
 /*bikelist*/
@@ -70,8 +77,9 @@ a:hover {
 }
 #pic {
   margin-top: 30px;
-  box-shadow: 2px 2px 2px 	#00FFFF;
+  /*box-shadow: 2px 2px 2px 	#00FFFF;*/
   border-radius: 15%;
+  border: 2px groove #00FFFF;
 }
 /*bike from*/
 .bikes {
@@ -84,11 +92,50 @@ a:hover {
   padding: 100px;
 }
 .thisBikeForm {
-  margin: 10% 25%;
+  color: 	#A52A2A;
+  font-size: 3em;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-top: 170px;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px 2px 		#F8F8FF;
+}
+#formBorder {
+  margin: 10% 30%;
+  color: 	#A52A2A;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px 2px 		#F8F8FF;
   padding: 30px;
   border-radius: 15%;
-  background-color: #66CDAA;
-  border: 4px solid blue;
+  background-color:	#B0E0E6;
+    position: relative;
+    -webkit-animation-name: bikeForm;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-name: bikeForm;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@-webkit-keyframes bikeForm {
+    0%   {border: 8px groove 	#00FF00;}
+    25%  {border: 8px groove #FAF0E6;}
+    50%  {border: 8px groove gold;}
+    75%  {border: 8px groove #FFEFD5;}
+    100% {border: 8px groove 	#DA70D6;}
+}
+@keyframes bikeForm {
+    0%   {border: 8px groove 	#00FF00;}
+    25%  {border: 8px groove #FAF0E6;}
+    50%  {border: 8px groove gold;}
+    75%  {border: 8px groove #FFEFD5;}
+    100% {border: 8px groove 	#DA70D6;}
 }
 #froggy {
   width: 30%;
@@ -101,6 +148,9 @@ a:hover {
   background-size: cover;
   color: #fff;
 }
+input {
+  color: black;
+}
 .partTitle {
   text-align: center;
   font-family: 'Bangers', cursive;
@@ -108,24 +158,47 @@ a:hover {
 }
 .partForm {
   margin-left: 60px;
-  /*background-color:	#F5F5DC;*/
   background-color: #4B0082;
 }
 .great {
-  color: 	#006400;
+  color: 		#00FF7F;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
 }
 .near {
   color: 	#FFD700;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
 }
 .past {
- color: 	#B22222
+ color: 	#ff0000;
+ font-weight: bold;
+ text-shadow: 1px 1px 1px #000;
 }
 .gif {
   height: 50px;
-  float: right;
-  margin-right: 50px;
+  position: relative;
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-direction: alternate;
+  animation-name: rider;
+  animation-duration: 8s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
 }
-
+@-webkit-keyframes rider {
+    0%   {left:0px; top:0px;}
+    100% {left:1000px; top:0px;}
+}
+@keyframes rider {
+    0%   {left:0px; top:0px;}
+    100% {left:1000px; top:0px;}
+}
+.description {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
 
 .columnTitles {
   margin-bottom: 35px;
@@ -151,7 +224,3 @@ a:hover {
 .tip {
   font-size: 10px;
 }
-
-/*h4 {
-  margin-bottom: 10px;
-}*/

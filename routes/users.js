@@ -98,6 +98,18 @@ router.put('/parts/:id', (req, res, next) => {
   .catch(function (error) {
     console.log(error);
   });
-})
+});
+
+router.delete('/parts/:id', (req, res, next) => {
+  var info = req.body;
+  var bikeId = req.params.id;
+  models.deleteComp(info)
+  .then(
+    res.json()
+  )
+  .catch(function (error) {
+    console.log(error);
+  });
+});
 
 module.exports = router;

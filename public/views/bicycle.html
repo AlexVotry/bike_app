@@ -2,29 +2,29 @@
   <ul class="nav navbar-nav">
     <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
       <li><a ui-sref="logout">logout</a></li>
-      <li><a ui-sref="bikeList">Bike List</a></li>
+      <li><a ng-click="home.logout()" ui-sref="bikeList">Bike List</a></li>
   </ul>
 </nav>
 <main class="bikes">
   <section class="wrapper" >
-    <form  class="thisBikeForm" name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
+    <form  id="formBorder" name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
 
-      <h2> {{ bicycle.thisBike.name }}</h2>
+      <h1 class="partTitle"> {{ bicycle.thisBike.name }}</h1>
       <h3>Bike Details: </h3>
       <span>
-        <img id="froggy" src="https://media.giphy.com/media/DqIPzTXE6PFm0/giphy.gif">
+        <img id="froggy" src="https://cdn1.vox-cdn.com/thumbor/RTpzAptGjAklTw6TxobdzIAq6Vc=/cdn0.vox-cdn.com/uploads/chorus_asset/file/3277216/bike.0.gif">
       </span>
 
-      <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
+      <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name: <span class="bikeName"> {{ bicycle.thisBike.name }}</span></h4>
           <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
 
-      <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  {{ bicycle.thisBike.manu }}</h4>
+      <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  <span class="bikeName"> {{ bicycle.thisBike.manu }}</span></h4>
           <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.thisBike.manu" autofocus></span>
 
-      <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  {{ bicycle.thisBike.year }}</h4>
+      <h4 ng-click="bicycle.yearForm = !bicycle.yearForm">Year:  <span class="bikeName"> {{ bicycle.thisBike.year }}</span></h4>
           <span ng-show="bicycle.yearForm"><input type="text" ng-model="bicycle.thisBike.year" autofocus></span>
 
-      <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  {{ bicycle.thisBike.model }}</h4>
+      <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  <span class="bikeName"> {{ bicycle.thisBike.model }}</span></h4>
           <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" autofocus></span><br>
 
 

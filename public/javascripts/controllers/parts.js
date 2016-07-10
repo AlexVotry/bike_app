@@ -31,6 +31,11 @@
       let allParts = vm.theseParts;
       Parts.editParts(allParts);
       location.reload();
+    };
+
+    vm.deletePart = function(desc, max, dist) {
+      console.log(desc, max, dist);
+      Parts.deletePart(desc, max, dist);
     }
   };
 })();
