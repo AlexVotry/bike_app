@@ -9,9 +9,9 @@
     let vm = this;
     let bikeId = $stateParams.bID;
     vm.thisBike = Stats.thisBicycle(bikeId);
-    vm.editBike = function(bicycle) {
-      // let bicycle = vm.thisBike;
-      console.log(bicycle);
+    vm.editBike = function() {
+      console.log("help");
+      let bicycle = vm.thisBike;
       Stats.editBike(bicycle);
       vm.nameForm = false;
       vm.manuForm = false;

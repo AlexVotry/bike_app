@@ -5,30 +5,37 @@
     .module('bikes')
     .controller('PartsController', PartsController);
 
-function PartsController(Parts, $location, $stateParams) {
-      let vm = this;
-      let bikeId = $stateParams.bID;
-      console.log(bikeId);
-      Parts.partsData(bikeId).then(partInfo => {
-          vm.theseParts = partInfo.comps;
-          vm.used = partInfo.used;
-          vm.togo = partInfo.toGo;
+  function PartsController(Parts, $location, $stateParams) {
+    let vm = this;
+    let bikeId = $stateParams.bID;
+    vm.tester = [];
+    // vm.code = event.which ===13 || event.keyCode === 13;
+    Parts.partsData(bikeId).then(partInfo => {
+        vm.theseParts = partInfo;
+    });
 
-      });
-      vm.mileageReset = function(miles, index) {
-        Parts.resetPartsMileage(miles, index);
-        }
-      vm.editParts = function() {
-        let allParts = vm.theseParts;
-        Parts.editParts(allParts);
-      }
-      vm.editForks = function() {
-        let allParts = vm.theseParts;
-        Parts.editForks(allParts);
-      }
-      vm.editWheels = function() {
-        let allParts = vm.theseParts;
-        Parts.editWheels(allParts);
-      }
+    vm.mileageAdjust = function(miles, name) {
+      Parts.resetPartsMileage(miles, name);
     };
-  })();
+
+    vm.mileageReset = function(miles, name) {
+      Parts.resetPartsMileage(miles, name);
+      location.reload();
+    };
+
+    vm.limitReset = function(miles, name) {
+      Parts.limitAdjust(miles, name);
+    };
+
+    vm.editParts = function() {
+      let allParts = vm.theseParts;
+      Parts.editParts(allParts);
+      location.reload();
+    };
+
+    vm.deletePart = function(desc, max, dist) {
+      console.log(desc, max, dist);
+      Parts.deletePart(desc, max, dist);
+    }
+  };
+})();

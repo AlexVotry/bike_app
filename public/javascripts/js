@@ -6,6 +6,6 @@ var showText = function (target, message, index, interval) {
 }
 
 $(function () {
-  showText("#zen", " Zen and the Art of Bicyle Maintence...", 0, 100);
+  showText("#zen", "   Zen and the Art of Bicyle Maintence...", 0, 100);
   showText("#loggedOut", " You are now logged out.", 0, 100);
 });

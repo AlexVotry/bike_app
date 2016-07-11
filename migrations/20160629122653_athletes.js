@@ -73,9 +73,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-     knex.schema.dropTable('frame_fork'),
      knex.schema.dropTable('components'),
-     knex.schema.dropTable('wheels'),
      knex.schema.dropTable('bikes'),
      knex.schema.dropTable('athletes')
   ])
