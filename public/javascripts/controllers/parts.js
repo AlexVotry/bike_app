@@ -8,7 +8,6 @@
   function PartsController(Parts, $location, $stateParams) {
     let vm = this;
     let bikeId = $stateParams.bID;
-    vm.tester = [];
     // vm.code = event.which ===13 || event.keyCode === 13;
     Parts.partsData(bikeId).then(partInfo => {
         vm.theseParts = partInfo;

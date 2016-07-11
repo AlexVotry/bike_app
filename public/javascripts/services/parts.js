@@ -15,6 +15,7 @@
     let partInfo = [];
     return {
       partsData: function(bikeId) {
+        // parts = {};
         return $http.get(`${url}/${bikeId}`)
         .then((result) => {
           let comps = result.data[0];
@@ -111,6 +112,7 @@
           };
 
           function spent(dist, limits, components) {
+            // parts = {};
             for (var i = 0; i < dist.length; i++) {
               let description = components[i];
               let installed = comps[components[i]];
