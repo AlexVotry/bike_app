@@ -28,7 +28,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new StravaStrategy({
     clientID: STRAVA_CLIENT_ID,
     clientSecret: STRAVA_CLIENT_SECRET,
-    callbackURL: process.env.Host + "/auth/strava/callback"
+    callbackURL: process.env.PORT + "/auth/strava/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     models.newId('athletes', profile.id).then(newId => {
