@@ -24,6 +24,3 @@ exports.seed = function(knex, Promise) {
     })
   );
 };
-
-
-// access_token = d2502b6017d0f7b5427d74917822a532f5f9a43e
