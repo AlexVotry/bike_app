@@ -1,60 +1,4 @@
-<<<<<<< HEAD
-<form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
 
-  <!-- <header ng-repeat-start="part in parts">
-    <div class="row col-sm-12">
-      <h4 class="col-sm-2 description" ng-click="partsbrakesForm = !partsbrakesForm">Brakeset: </h4>
-      <h4 class="col-sm-3" ng-click="partsbrakesForm = !partsbrakesForm"> {{ part.name }}</h4>
-      <h4 class="col-sm-2" ng-click="partsused2= !partsused2">pads: {{ part.used }}</h4>
-      <button type="submit" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" name="addIt" ng-click="parts.mileageReset(0, 2)">replaced!</button>
-      <h4 class="col-sm-2">pads: {{ part.togo - part.used }}</h4>
-    </div>
-    <div class="row col-sm-12">
-      <div class="col-sm-4" ng-show="partsbrakesForm">
-        <input type="text" ng-model="part.name" ></div>
-      <div class="col-sm-2" ng-show="partsused2">
-        <input type="number" ng-model="part.used" ng-change="parts.mileageReset(part.used, 2)">
-      </div>
-    </div>
-  </header ng-repeat-end> -->
-
-  <header ng-repeat-start="item in parts.theseParts.dist">
-    Header {{ item }}
-  </header>
-  <div class="body">
-    Body {{ item.used }}
-  </div>
-  <footer ng-repeat-end>
-    Footer {{ item.toGo }}
-  </footer>
-
-
-  <h2>Parts List for {{ parts.theseParts.name }}:</h2>
-    <p> to change any information click on it </p>
-  <div class="row col-sm-12">
-    <h3 class="col-sm-3">Components</h3>
-    <h3 class="col-sm-2">Installed</h3>
-    <h3 class="col-sm-2">Used Miles</h3>
-    <h3 class="col-sm-3">Miles until replacement</h3>
-  </div>
-
-  <div class="row col-sm-12">
-    <h3 class="col-sm-2">Parts: <h3>  <button type="submit" class="btn btn-primary btn-xs" name="addIt">Update Parts!</button>
-  </div>
-
-  <div class="row col-sm-12">
-    <h4 class="col-sm-2 description" ng-click="partsbrakesForm = !partsbrakesForm">Brakeset: </h4>
-    <h4 class="col-sm-3" ng-click="partsbrakesForm = !partsbrakesForm"> {{ parts.theseParts.Brakeset }}</h4>
-    <h4 class="col-sm-2" ng-click="partsused2= !partsused2">pads: {{ parts.used[2] }}</h4>
-    <button type="submit" class="btn btn-primary btn-xs	glyphicon glyphicon-wrench" name="addIt" ng-click="parts.mileageReset(0, 2)">replaced!</button>
-    <h4 class="col-sm-2">pads: {{ parts.togo[2] - parts.used[2] }}</h4>
-  </div>
-  <div class="row col-sm-12">
-    <div class="col-sm-4" ng-show="partsbrakesForm">
-      <input type="text" ng-model="parts.theseParts.Brakeset" ></div>
-    <div class="col-sm-2" ng-show="partsused2">
-      <input type="number" ng-model="parts.used[2]" ng-change="parts.mileageReset(parts.used[2], 2)">
-=======
 <nav class="navbar navbar-inverse" role="navigation">
   <ul class="nav navbar-nav">
     <!-- directive allows us to declare what state we want to link to, rather than an explicit url. -->
@@ -88,7 +32,7 @@
            click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
          </div>
       </div>
->>>>>>> 998feaac58c027e563df52c52536fd70ee3d1363
+
     </div>
    </summary>
 

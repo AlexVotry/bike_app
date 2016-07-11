@@ -9,15 +9,6 @@
   <section class="wrapper" >
     <form  id="formBorder" name="thisBike" class="form-group" ng-submit="bicycle.editBike(bicycle.thisBike)">
 
-<<<<<<< HEAD
-  <h2>Bike Description: </h2>
-  <h3> {{ bicycle.thisBike.name }}</h3>
-<div ng-repeat="sample in bicycle.thisBike">
-  <li>{{ sample }}
-</div>
-  <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name:  {{ bicycle.thisBike.name }}</h4>
-      <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
-=======
       <h1 class="partTitle"> {{ bicycle.thisBike.name }}</h1>
       <h3>Bike Details: </h3>
       <span>
@@ -26,7 +17,6 @@
 
       <h4 ng-click="bicycle.nameForm = !bicycle.nameForm">Name: <span class="bikeName"> {{ bicycle.thisBike.name }}</span></h4>
           <span ng-show="bicycle.nameForm"><input type="text" ng-model="bicycle.thisBike.name" autofocus ></span>
->>>>>>> 998feaac58c027e563df52c52536fd70ee3d1363
 
       <h4 ng-click="bicycle.manuForm = !bicycle.manuForm">Manufacturer:  <span class="bikeName"> {{ bicycle.thisBike.manu }}</span></h4>
           <span ng-show="bicycle.manuForm"><input type="text" ng-model="bicycle.thisBike.manu" autofocus></span>
@@ -37,12 +27,6 @@
       <h4 ng-click="bicycle.modelForm = !bicycle.modelForm">Model:  <span class="bikeName"> {{ bicycle.thisBike.model }}</span></h4>
           <span ng-show="bicycle.modelForm"><input type="text" ng-model="bicycle.thisBike.model" autofocus></span><br>
 
-<<<<<<< HEAD
-  <button type="submit" class="btn btn-primary col-sm-3" name="addIt">Update!</button>
-  <button type="button" class="btn btn-primary col-sm-3" ui-sref="bikeList">Close</button>
-
-</form>
-=======
 
       <footer class="modal-footer">
         <button type="submit" class="btn btn-success col-sm-3" ui-sref="bikeList" name="addIt">Update!</button>
@@ -51,4 +35,3 @@
     </section>
   </div>
 </main>
->>>>>>> 998feaac58c027e563df52c52536fd70ee3d1363
