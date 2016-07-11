@@ -13,14 +13,15 @@
     let limits = [];
     let components = [];
     let partInfo = [];
+    let firstRun = false;
     return {
       partsData: function(bikeId) {
-        // parts = {};
         return $http.get(`${url}/${bikeId}`)
         .then((result) => {
           let comps = result.data[0];
           let totalDist = parseInt(comps.distance * 0.00062137);
           comps.distance = totalDist;
+          partInfo = [];
           components = [
             'Brakeset',
             'ShiftLevers',
@@ -112,7 +113,6 @@
           };
 
           function spent(dist, limits, components) {
-            // parts = {};
             for (var i = 0; i < dist.length; i++) {
               let description = components[i];
               let installed = comps[components[i]];
@@ -132,10 +132,17 @@
                 partInfo.push(parts);
               }
             }
+            firstRun = true;
+            // console.log(parts);
           }
-          spent(dist, limits, components);
+          // if (firstRun === false) {
+            spent(dist, limits, components);
+          // } else {
+          //   console.log(partInfo[0]);
+          // }
           parts.comps = comps;
           partInfo.name = comps.name;
+          console.log(partInfo);
           return partInfo;
         })
       },
