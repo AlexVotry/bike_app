@@ -10,7 +10,7 @@
     let bikeId = $stateParams.bID;
     vm.thisBike = Stats.thisBicycle(bikeId);
     vm.editBike = function() {
-      console.log(bikeId);
+      console.log("help");
       let bicycle = vm.thisBike;
       Stats.editBike(bicycle);
       vm.nameForm = false;

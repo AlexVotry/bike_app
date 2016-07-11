@@ -52,10 +52,12 @@
               <span class="caret"></span>
             </button>
               <ul class="dropdown-menu" role="menu">
-                <li class="tip"> enter how many miles you've ridden with this part:</li>
+                <li class="tip"> <p>enter how many miles you've ridden with this part:<p></li>
                   <li> <input type="number" ng-model="item.used" ng-change="parts.mileageAdjust(item.used, item.partDistName)" autofocus> </li>
-                <li class="tip"> enter the distance between changes you want:</li>
+
+                <li class="tip"> <p>enter the distance between changes you want:<p></li>
                   <li> <input type="number" ng-model="item.maxMiles"  ng-change="parts.limitReset(item.maxMiles, item.maxName)" autofocus> </li>
+
                 <li><button type="submit" class="btn btn-primary btn-xs" data-toggle="dropdown">change it</button>
                 </ul>
               </div>
