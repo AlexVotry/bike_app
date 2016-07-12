@@ -39,7 +39,7 @@
         }
       },
       editBike: function(bicycle) {
-        $http.put(`${url}/`, bicycle);
+        $http.put(`bikes/`, bicycle);
       },
       logout: function() {
         $http:get('/logout');
