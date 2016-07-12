@@ -1,6 +1,5 @@
 
 # Zen Bike app
----
 
 This is an app that uses the Strava API.  It lists the bikes mileage and then itemizes the parts on the bike.  
 You can edit the components, and the interval between replacement. 
