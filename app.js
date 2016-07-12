@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
+const bikes = require('./routes/bikes');
+const parts = require('./routes/parts');
 const methodOverride = require('method-override');
 const session = require('cookie-session');
 const models = require('./db/models');
@@ -69,6 +71,8 @@ app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/bikes', bikes);
+app.use('/parts', parts);
 
 app.get('/users', ensureAuthenticated, function(req, res){
   res.render('users', { user: req.user });

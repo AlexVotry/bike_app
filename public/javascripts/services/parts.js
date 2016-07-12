@@ -6,8 +6,7 @@
   .factory('Parts', Parts);
 
   function Parts($http) {
-    let url = "/users";
-    // let parts = { used: [], toGo: [], installed: [], maxMiles: [] };
+    let url = "/parts";
     let parts = new Object();
     let dist = [];
     let limits = [];
@@ -133,13 +132,8 @@
               }
             }
             firstRun = true;
-            // console.log(parts);
           }
-          // if (firstRun === false) {
             spent(dist, limits, components);
-          // } else {
-          //   console.log(partInfo[0]);
-          // }
           parts.comps = comps;
           partInfo.name = comps.name;
           console.log(partInfo);
@@ -161,13 +155,13 @@
 
       editParts: function(allParts) {
           var bikeId = parts.comps.bID;
-        $http.put(`${url}/parts/${bikeId}`, allParts);
+        $http.put(`${url}/${bikeId}`, allParts);
       },
 
       deletePart: function(desc, max, dist) {
         var bikeId = parts.comps.bID;
         var info = {description: desc, limitColumn: max, partDist: dist };
-        $http.put(`${url}/parts/${bikeId}`, info);
+        $http.put(`${url}/${bikeId}`, info);
       }
     }
   }
