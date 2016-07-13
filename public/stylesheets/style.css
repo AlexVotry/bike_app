@@ -67,13 +67,14 @@ a:hover {
   color: 		#FFD700;
 }
 .listOBikes {
-  color: 	#A52A2A;
+  color: 	#F5F5DC;
+  /*background-color: #4B0082;*/
   font-size: 3em;
   font-weight: bold;
-  margin-left: 50px;
+  margin-left: 200px;
   margin-top: 170px;
-  font-family: 'Indie Flower', cursive;
-  text-shadow: 2px 2px 2px 		#F8F8FF;
+  font-family: 'Bangers', cursive;
+  text-shadow: 2px 2px 2px 		#000;
 }
 #welcome {
   font-family: 'Bangers', cursive;

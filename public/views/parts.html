@@ -10,29 +10,30 @@
 <main id="partsBackground" class="row col-sm-12">
   <h2 class="partTitle">Parts List for {{ parts.theseParts.name }}:</h2>
     <section >
-      <summary class="row col-sm-11 well partForm">
   <form name="thisPart" class="form-group" ng-submit="parts.editParts(parts.theseParts)">
+    <summary class="row col-sm-11 well partForm">
 
-    <div class="col-sm-12">
-      <h4 class="col-sm-5 description"> click on a component to update brand and model</h4>
-      <div class="btn-group col-sm-6 pull-right">
-        <button type="button" class="btn btn-warning " ui-sref="bikeList">Close without making changes</button>
-        <button type="submit" class="btn btn-warning" ui-sref="bikeList">Submit changes and close</button>
+      <div class="col-sm-12">
+        <h4 class="col-sm-5 description"> click on a component to update brand and model</h4>
+        <div class="btn-group col-sm-6 pull-right">
+          <button type="button" class="btn btn-warning " ui-sref="bikeList">Close without making changes</button>
+          <button type="submit" class="btn btn-warning">Submit changes</button>
+        </div>
+      </div><br>
+
+      <div class="col-sm-12">
+       <h3 class="col-sm-2">Part</h3>
+       <h3 class="col-sm-2">Part Spec.</h3>
+       <h3 class="col-sm-2">Used Miles</h3>
+       <h3 class="col-sm-3">Miles until replacement</h3>
+       <div class="col-sm-2">
+         <h3 data-toggle="collapse" data-target="#buttonDirections">Button Directions..</h3>
+           <div id="buttonDirections" class="collapse" >
+             click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
+           </div>
+        </div>
       </div>
-    </div><br>
-  <div class="col-sm-12">
-     <h3 class="col-sm-2">Part</h3>
-     <h3 class="col-sm-2">Part Spec.</h3>
-     <h3 class="col-sm-2">Used Miles</h3>
-     <h3 class="col-sm-3">Miles until replacement</h3>
-     <div class="col-sm-2">
-       <h3 data-toggle="collapse" data-target="#buttonDirections">Button Directions..</h3>
-         <div id="buttonDirections" class="collapse" >
-           click the button when you've replaced the part. Hit the arrow to adjust the miles you've ridden with the part, or to adjust the distance between replacement.
-         </div>
-      </div>
-    </div>
-   </summary>
+     </summary>
 
     <article class="row col-sm-11 well partForm">
       <div ng-repeat="item in parts.theseParts | orderBy: 'maxMiles'">
@@ -40,11 +41,9 @@
         <div class="col-sm-2 ">
           <h4 ng-class="{great: item.toGo >= 100, past: item.toGo <= 0, near: (item.toGo < 99 && item.toGo > 0)}" ng-click="descButton = !descButton" >{{item.desc}} </h4>
         </div>
-        <!-- <div id="bikeData" class="collapse width"> -->
           <h4 class="col-sm-2" ng-click="descForm = !descForm">{{item.installed}}</h4>
           <h4 class="col-sm-2">{{item.used}}</h4>
           <h4 class="col-sm-3" ng-click="replaced= !replaced">{{item.maxMiles - item.used}} </h4>
-        <!-- </div> -->
           <div class="btn-group col-sm-3 ">
             <button type="button" class="btn btn-warning btn-xs	glyphicon glyphicon-wrench" ng-click="parts.mileageReset(0, item.partDistName)">replace!</button>
             <button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -70,7 +69,6 @@
               <a ng-click="parts.deletePart(item.desc, item.maxName, item.partDistName)">Delete this component</a>
             </div>
           </div>
-
       </article>
     </section>
   </form>
