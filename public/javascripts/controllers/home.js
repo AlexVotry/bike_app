@@ -12,6 +12,7 @@
     });
     vm.logout = function() {
       Stats.logout();
+      
     };
   };
 })();
