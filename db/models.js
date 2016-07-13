@@ -79,7 +79,6 @@ module.exports = {
 
   newBike: function newBike(profile) {
     const newBikes = profile._json.bikes;
-    console.log('newBike', newBikes.length);
     return Promise.all(
     newBikes.map(function(bike) {
       return knex('bikes').insert({
@@ -116,7 +115,6 @@ module.exports = {
   existingBike: function existingBike(profile) {
     const newBikes = profile._json.bikes;
     for (var i = 0; i < newBikes.length; i++) {
-      console.log(newBikes.length);
       return knex('bikes').where({bID: newBikes[i].id}).update({
         distance: newBikes[i].distance
       })

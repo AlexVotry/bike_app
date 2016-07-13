@@ -38,6 +38,7 @@ router.put('/limit', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   var parts = req.body;
   var bikeId = req.params.id;
+  console.log('put: ', req.body);
   models.components().where({ bID: bikeId }).update({
     Brakeset:	parts[0].installed,
     ShiftLevers: parts[1].installed,
