@@ -21,12 +21,17 @@ const STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
 const STRAVA_CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  console.log('serializing user', user);
+  done(null, user.ID);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+  console.log('deserializing id', id);
+  models.getAthlete(id).then((athlete)=> {
+    return done(null, athlete);
+  });
 });
+
 passport.use(new StravaStrategy({
     clientID: STRAVA_CLIENT_ID,
     clientSecret: STRAVA_CLIENT_SECRET,
@@ -47,7 +52,9 @@ passport.use(new StravaStrategy({
         });
       } else {
         models.existingBike(profile).then(()=> {
-          return done(null, profile);
+          models.getAthlete(profile.id).then((athlete)=> {
+            return done(null, athlete);
+          });
         });
       }
     });
@@ -75,6 +82,7 @@ app.use('/bikes', bikes);
 app.use('/parts', parts);
 
 app.get('/users', ensureAuthenticated, function(req, res){
+  console.log('session: ', req.session);
   res.render('users', { user: req.user });
 });
 

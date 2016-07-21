@@ -9,7 +9,8 @@ const models = require('../db/models');
 /* GET home page. */
 
 router.get('/', (req, res, next) => {
-  models.dudeAndBike().select()
+  console.log(req.user, "REQ.USER");
+  models.dudeAndBike(req.user).select()
   .then(stravaData => {
     res.json(stravaData);
   }).catch(function (error) {

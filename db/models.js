@@ -10,8 +10,8 @@ module.exports = {
   components: function components() {
     return knex('components');
   },
-  dudeAndBike: function dudeAndBike() {
-    return knex('athletes')
+  dudeAndBike: function dudeAndBike(user) {
+    return knex('athletes').where('athletes.ID', user.ID)
     .join('bikes', {'bikes.ID': 'athletes.ID'});
   },
   allParts: function allParts(bikeId) {
@@ -53,6 +53,9 @@ module.exports = {
 
     return knex('wear_limits').where({ 'wear_limits.bike_id' : bikeId })
     .update(newData)
+  },
+  getAthlete: function getAthlete(id) {
+    return knex('athletes').where({ ID: id }).first();
   },
 
   newId: function newId(table, id) {
