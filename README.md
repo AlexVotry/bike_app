@@ -13,6 +13,6 @@ https://zen-bike.herokuapp.com
 
 You can click on the image below and see it run in youtube.
 
-[![bike App](https://github.com/AlexVotry/bike_app/blob/master/public/images/readme.png "parts screen")]
+![bike App](https://github.com/AlexVotry/bike_app/blob/master/public/images/readme.png "parts screen")
 (https://www.youtube.com/watch?v=pErmrvrkmrg&feature=em-share_video_user)
 
